@@ -1,0 +1,37 @@
+.panier { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+
+.panier__header {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; margin-bottom: 16px;
+}
+.panier__meta { display: flex; gap: 12px; align-items: center; }
+.panier__total { font-weight: 800; color: var(--text); }
+
+.btn { padding: 8px 12px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
+.btn--danger { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+.btn--danger:disabled { opacity: .6; cursor: not-allowed; }
+
+.panier__list { display: grid; gap: 12px; }
+.panier__item {
+  display: grid; grid-template-columns: 96px 1fr auto; gap: 12px;
+  align-items: center; padding: 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--card);
+}
+.panier__img { border-radius: 8px; object-fit: cover; width: 96px; height: 96px; }
+
+.panier__title { margin: 0; font-size: 16px; font-weight: 800; color: var(--text); }
+.panier__price { margin: 4px 0 0; font-weight: 700; color: #2563eb; }
+
+.panier__qty { display: inline-flex; gap: 8px; align-items: center; margin-top: 8px; }
+.qty-btn {
+  width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card); cursor: pointer;
+}
+.qty-input {
+  width: 48px; text-align: center; padding: 6px 8px; border: 1px solid var(--border);
+  border-radius: 8px; background: white;
+}
+
+.remove-btn {
+  border: 1px solid var(--border); background: #fff; color: #ef4444;
+  width: 36px; height: 36px; border-radius: 8px; cursor: pointer;
+}

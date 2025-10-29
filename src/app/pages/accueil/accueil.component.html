@@ -1,0 +1,151 @@
+<!-- Container -->
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow">Bienvenue chez</div>
+        <h1 class="hero__title">Velocitor</h1>
+        <p class="hero__subtitle">
+          Vélos de route, VTT, vélos urbains & accessoires sélectionnés pour la performance et le confort.
+        </p>
+      </div>
+
+      <div class="hero__media">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          <div>
+            <div class="hero__badge-title">Qualité pro</div>
+            <div class="hero__badge-sub">Réglé & prêt à rouler</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI -->
+   <div class="kpi-wrapper">
+    <section class="kpi">
+
+       <!-- Première série -->
+
+        <div class="kpi__card">
+          <div class="kpi__label">Articles</div>
+          <div class="kpi__icon" aria-hidden="true">📦</div>
+          <div class="kpi__value">{{ count() }}</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix moyen</div> <div class="kpi__icon" aria-hidden="true">💶</div>
+          <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix à partir de </div>
+          <div class="kpi__icon" aria-hidden="true">⬇️</div>
+          <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix maximal</div>
+          <div class="kpi__icon" aria-hidden="true">⬆️</div>
+          <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Valorisation du stock</div>
+          <div class="kpi__icon" aria-hidden="true">💼</div>
+          <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
+        </div>
+        
+        <!-- Deuxième série identique (pour boucle fluide) -->
+
+        <div class="kpi__card">
+          <div class="kpi__label">Articles</div>
+          <div class="kpi__icon" aria-hidden="true">📦</div>
+          <div class="kpi__value">{{ count() }}</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix moyen</div> <div class="kpi__icon" aria-hidden="true">💶</div>
+          <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix à partir de </div>
+          <div class="kpi__icon" aria-hidden="true">⬇️</div>
+          <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Prix maximal</div>
+          <div class="kpi__icon" aria-hidden="true">⬆️</div>
+          <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
+        </div>
+        <div class="kpi__card">
+          <div class="kpi__label">Valorisation du stock</div>
+          <div class="kpi__icon" aria-hidden="true">💼</div>
+          <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
+        </div>
+    </section>
+  </div>
+
+  <!-- FEATURED (produits phares) -->
+  <section class="featured">
+    <div class="featured__header">
+      <h2 class="section-title">Sélection du moment</h2>
+      <a routerLink="/catalogue" routerLinkActive="active" class="link">Voir tout →</a>
+    </div>
+
+    <div class="cards">
+      <article class="card" *ngFor="let p of featured(); trackBy: trackById">
+        <div class="card__image">
+          <img [src]="primaryImage(p.imageUrl)" [alt]="p.nom" loading="lazy">
+          <div class="card__chip">Top</div>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">{{ p.nom }}</h3>
+          <p class="card__desc">{{ p.description }}</p>
+          <div class="card__footer">
+            <span class="price">{{ p.prix | currency:'EUR' }}</span>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
+              (click)="AjouterAuPanier(p)"
+              [attr.aria-label]="'Ajouter ' + p.nom + ' au panier'"
+            >
+              Ajouter au panier
+            </button>
+            <!--
+            <a class="btn btn-outline">
+              Ajouter au panier
+            </a>
+            -->
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="trust__item">
+      <div class="trust__icon">🚚</div>
+      <div>
+        <div class="trust__title">Livraison en 48h</div>
+        <div class="trust__sub">Suivi en temps réel</div>
+      </div>
+    </div>
+    <div class="trust__item">
+      <div class="trust__icon">🛠️</div>
+      <div>
+        <div class="trust__title">Montage atelier</div>
+        <div class="trust__sub">Réglages offerts</div>
+      </div>
+    </div>
+    <div class="trust__item">
+      <div class="trust__icon">🔒</div>
+      <div>
+        <div class="trust__title">Paiement sécurisé</div>
+        <div class="trust__sub">CB / PayPal</div>
+      </div>
+    </div>
+  </section>
+
+</div>

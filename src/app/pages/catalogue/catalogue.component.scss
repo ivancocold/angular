@@ -1,0 +1,23 @@
+
+/* Images homogènes */
+img {
+  height: 14rem; /* ~ h-56 */
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0;
+  transition: transform 0.3s ease;
+}
+img:hover { transform: scale(1.03); }
+
+/* Clamp multi-lignes pour la description */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Chrome/Safari/Edge */
+  line-clamp: 2;         /* Standard */
+  overflow: hidden;
+}
+.cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}

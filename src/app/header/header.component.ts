@@ -4,6 +4,7 @@ import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.component.html',
   imports: [
     RouterLinkActive,
