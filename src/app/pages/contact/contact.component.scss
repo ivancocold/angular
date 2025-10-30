@@ -79,3 +79,14 @@ button {
 button:hover {
   background-color: #1e40af;
 }
+
+.error small {
+  color: red;
+  font-size: 0.8rem;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: red;
+}
+

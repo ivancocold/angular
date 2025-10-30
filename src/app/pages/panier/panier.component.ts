@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [CommonModule, CurrencyPipe, NgOptimizedImage],
   templateUrl: './panier.component.html',
-  styleUrl: './panier.component.css'
+  styleUrl: './panier.component.scss'
 })
 
 export class PanierComponent {

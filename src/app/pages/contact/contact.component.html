@@ -1,42 +1,64 @@
 <div class="contact-container">
   <h2>Contactez-nous!</h2>
-  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+
+  <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contact-form">
+    <!-- NOM -->
     <div class="form-group">
       <input
         type="text"
         name="name"
         id="name"
         [(ngModel)]="formData.name"
+        #name="ngModel"
         required
+        pattern=".*\S.*"
         placeholder=" "
       />
       <label for="name">Nom</label>
+      <div *ngIf="name.invalid && name.touched" class="error">
+        <small *ngIf="name.errors?.['required']">Le nom est requis.</small>
+        <small *ngIf="name.errors?.['pattern']">Le nom ne peut pas être vide.</small>
+      </div>
     </div>
 
+    <!-- EMAIL -->
     <div class="form-group">
       <input
         type="email"
         name="email"
         id="email"
         [(ngModel)]="formData.email"
+        #email="ngModel"
         required
+        pattern="^[\w\.-]+@[\w\.-]+\.\w{2,}$"
         placeholder=" "
       />
       <label for="email">Email</label>
+      <div *ngIf="email.invalid && email.touched" class="error">
+        <small *ngIf="email.errors?.['required']">L'adresse email est requise.</small>
+        <small *ngIf="email.errors?.['pattern']">Adresse email invalide.</small>
+      </div>
     </div>
 
+    <!-- MESSAGE -->
     <div class="form-group">
       <textarea
         name="message"
         id="message"
         [(ngModel)]="formData.message"
+        #message="ngModel"
         required
+        pattern=".*\S.*"
         placeholder=" "
         rows="5"
       ></textarea>
       <label for="message">Message</label>
+      <div *ngIf="message.invalid && message.touched" class="error">
+        <small *ngIf="message.errors?.['required']">Le message est requis.</small>
+        <small *ngIf="message.errors?.['pattern']">Le message ne peut pas être vide.</small>
+      </div>
     </div>
 
-    <button type="submit">Envoyer</button>
+    <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
   </form>
 </div>

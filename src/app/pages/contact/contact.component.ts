@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
   formData = {
@@ -16,9 +16,16 @@ export class ContactComponent {
     message: ''
   };
 
-  onSubmit() {
-    console.log('Formulaire envoyé :', this.formData);
-    alert('Merci pour votre message !');
-    this.formData = { name: '', email: '', message: '' };
+  onSubmit(form: any) {
+  if (form.invalid) {
+    alert('Merci de remplir correctement tous les champs.');
+    return;
   }
+
+  console.log('Formulaire envoyé :', this.formData);
+  alert('Merci pour votre message !');
+  this.formData = { name: '', email: '', message: '' };
+  form.resetForm();
+}
+
 }
