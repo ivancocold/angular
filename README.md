@@ -75,6 +75,7 @@ ng new nom_du_projet
 
 Un projet est créé avec l'arborescence suivant:
 
+```bash
 nom_du_projet/
 │
 ├── src/
@@ -98,7 +99,7 @@ nom_du_projet/
 ├── package.json                    # Dépendances npm
 ├── tsconfig.json                   # Configuration TypeScript
 └── README.md
-
+```
 
 Pour créer un composant en ligne de commandes:
 ```bash
@@ -241,4 +242,4 @@ Vous pouvez mettre toutes les opérations de configuration nécessaires dans la 
 ComponentFixture est un banc d'essai permettant d'interagir avec le composant créé et son élément correspondant.
 
 # TestBed
-Il configure et initialise l'environnement pour les tests unitaires et fournit des méthodes pour créer des composants et des services dans ces tests. `TestBed`est l'API principale pour écrire des tests unitaires pour les applications et bibliothèques Angular.
+Il configure et initialise l'environnement pour les tests unitaires et fournit des méthodes pour créer des composants et des services dans ces tests. `TestBed` est l'API principale pour écrire des tests unitaires pour les applications et bibliothèques Angular.
