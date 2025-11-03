@@ -1,6 +1,16 @@
 <div class="contact-container">
   <h2>Contactez-nous!</h2>
 
+  <!-- ✅ Bannière de succès -->
+  <div *ngIf="successMessage" class="banner success">
+    {{ successMessage }}
+  </div>
+
+  <!-- ❌ Bannière d’erreur -->
+  <div *ngIf="errorMessage" class="banner error">
+    {{ errorMessage }}
+  </div>
+
   <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contact-form">
     <!-- NOM -->
     <div class="form-group">
@@ -16,7 +26,7 @@
       />
       <label for="name">Nom</label>
       <div *ngIf="name.invalid && name.touched" class="error">
-        <small *ngIf="name.errors?.['required']">Le nom est requis.</small>
+        <small *ngIf="name.errors?.['required']">Un nom est requis.</small>
         <small *ngIf="name.errors?.['pattern']">Le nom ne peut pas être vide.</small>
       </div>
     </div>
@@ -35,7 +45,7 @@
       />
       <label for="email">Email</label>
       <div *ngIf="email.invalid && email.touched" class="error">
-        <small *ngIf="email.errors?.['required']">L'adresse email est requise.</small>
+        <small *ngIf="email.errors?.['required']">Une adresse email valide est requise.</small>
         <small *ngIf="email.errors?.['pattern']">Adresse email invalide.</small>
       </div>
     </div>
@@ -54,7 +64,7 @@
       ></textarea>
       <label for="message">Message</label>
       <div *ngIf="message.invalid && message.touched" class="error">
-        <small *ngIf="message.errors?.['required']">Le message est requis.</small>
+        <small *ngIf="message.errors?.['required']">Un message non vide est requis.</small>
         <small *ngIf="message.errors?.['pattern']">Le message ne peut pas être vide.</small>
       </div>
     </div>
