@@ -19,8 +19,8 @@ export class ContactComponent
     email: '',
     message: ''
   };
-  successMessage = 'Merci pour votre message qui a été envoyé avec succès. ✅ '; // ✅ Message de confirmation
-  errorMessage = 'Erreur lors de l’envoi du message. ⚠️';   // ⚠️ Message d’erreur éventuel
+  successMessage : string | null = null;
+  errorMessage : string | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class ContactComponent
       next: () => 
         {
         this.successMessage = '✅ Votre message a bien été envoyé !';
-        this.errorMessage = '';
+        this.errorMessage = null;
         form.resetForm();
 
         // Efface la bannière après 3 secondes
@@ -46,8 +46,8 @@ export class ContactComponent
       error: (err) =>
         {
         console.error('Erreur envoi message :', err);
-        this.errorMessage = '❌ Une erreur est survenue. Veuillez réessayer.';
-        this.successMessage = '';
+        this.errorMessage = '❌ Une erreur est survenue côté backend. Veuillez réessayer!';
+        this.successMessage = null;
 
         // Efface la bannière après 3 secondes
         setTimeout(() => (this.errorMessage = ''), 3000);
