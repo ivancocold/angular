@@ -197,6 +197,9 @@ Lors du rendu du composant par Angular, le format de date et la devise seront ad
 
 # Choix techniques
 
+### BackEnd
+Le backend est conçu en js avec Node.js.
+
 ### CommonModule
 Exporte toutes les directives et tous les pipes Angular de base, tels que `NgIf`, `NgForOf`, `DecimalPipe`, etc. Réexportés par `BrowserModule`, qui est automatiquement inclus dans le module racine `AppModule` lors de la création d'une nouvelle application avec la commande `new` de l'interface de ligne de commande.
 
