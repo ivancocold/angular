@@ -15,7 +15,7 @@ node server.js
 ```
 Il est possible de lancer les deux serveur en même temps. Assurez-vous d'installer concurrently (`npm install --save-dev concurrently`) et éxecutez la commande suivante:
 ```bash
-ng npm start
+npm start
 ```
 
 Pour compiler le projet, exécutez :
