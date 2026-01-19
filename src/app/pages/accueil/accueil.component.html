@@ -96,7 +96,7 @@
     <div class="cards">
       <article class="card" *ngFor="let p of featured(); trackBy: trackById">
         <div class="card__image">
-          <img [src]="primaryImage(p.imageUrl)" [alt]="p.nom" loading="lazy">
+          <img [src]="primaryImage(p.imageUrl)" [alt]="p.nom" loading="eager">
           <div class="card__chip">Top</div>
         </div>
         <div class="card__body">
