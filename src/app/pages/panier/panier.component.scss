@@ -10,6 +10,16 @@
 .btn { padding: 8px 12px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
 .btn--danger { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
 .btn--danger:disabled { opacity: .6; cursor: not-allowed; }
+.btn--primary {
+  background: #dbeafe;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+.btn--primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
 
 .panier__list { display: grid; gap: 12px; }
 .panier__item {

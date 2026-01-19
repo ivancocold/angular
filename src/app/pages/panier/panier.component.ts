@@ -28,4 +28,22 @@ export class PanierComponent {
   total(): number { return this.panier.getTotal(); }
   count(): number { return this.panier.getCount(); }
   clear() { this.panier.clear(); }
+
+  pay(): void {
+  const total = this.total();
+
+  if (!total || total <= 0) return;
+
+  // PayPal.me attend un montant "12.34" (point), pas "12,34"
+  const amount = total.toFixed(2); // ex: "19.90"
+
+  // URL PayPal.me avec devise EUR
+  const url = `https://www.paypal.me/ivancorneille/${amount}EUR`;
+
+  // Redirection (propose le paiement sur PayPal)
+  window.location.assign(url);
+
+  // Option: ouvrir dans un nouvel onglet
+  // window.open(url, '_blank', 'noopener,noreferrer');
+}
 }

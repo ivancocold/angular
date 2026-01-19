@@ -5,6 +5,15 @@
       <span>{{ count() }} article{{ count() > 1 ? 's' : '' }}</span>
       <span class="panier__total">Total : {{ total() | currency:'EUR' }}</span>
       <button class="btn btn--danger" (click)="clear()" [disabled]="count() === 0">Vider le panier</button>
+
+      <button
+        class="btn btn--primary"
+        (click)="pay()"
+        [disabled]="count() === 0"
+      >
+        Passer au paiement
+      </button>
+    
     </div>
   </header>
   
