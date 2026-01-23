@@ -27,62 +27,71 @@
   </section>
 
   <!-- KPI -->
-   <div class="kpi-wrapper">
+  <div class="kpi-wrapper">
     <section class="kpi">
 
-       <!-- Première série -->
+      <!-- Première série -->
+      <div class="kpi__card">
+        <div class="kpi__label">Articles</div>
+        <div class="kpi__icon" aria-hidden="true">📦</div>
+        <div class="kpi__value">{{ count() }}</div>
+      </div>
 
-        <div class="kpi__card">
-          <div class="kpi__label">Articles</div>
-          <div class="kpi__icon" aria-hidden="true">📦</div>
-          <div class="kpi__value">{{ count() }}</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix moyen</div> <div class="kpi__icon" aria-hidden="true">💶</div>
-          <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix à partir de </div>
-          <div class="kpi__icon" aria-hidden="true">⬇️</div>
-          <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix maximal</div>
-          <div class="kpi__icon" aria-hidden="true">⬆️</div>
-          <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Valorisation du stock</div>
-          <div class="kpi__icon" aria-hidden="true">💼</div>
-          <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
-        </div>
-        
-        <!-- Deuxième série identique (pour boucle fluide) -->
+      <div class="kpi__card">
+        <div class="kpi__label">Prix moyen</div>
+        <div class="kpi__icon" aria-hidden="true">💶</div>
+        <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
+      </div>
 
-        <div class="kpi__card">
-          <div class="kpi__label">Articles</div>
-          <div class="kpi__icon" aria-hidden="true">📦</div>
-          <div class="kpi__value">{{ count() }}</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix moyen</div> <div class="kpi__icon" aria-hidden="true">💶</div>
-          <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix à partir de </div>
-          <div class="kpi__icon" aria-hidden="true">⬇️</div>
-          <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Prix maximal</div>
-          <div class="kpi__icon" aria-hidden="true">⬆️</div>
-          <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
-        </div>
-        <div class="kpi__card">
-          <div class="kpi__label">Valorisation du stock</div>
-          <div class="kpi__icon" aria-hidden="true">💼</div>
-          <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
-        </div>
+      <div class="kpi__card">
+        <div class="kpi__label">Prix à partir de</div>
+        <div class="kpi__icon" aria-hidden="true">⬇️</div>
+        <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Prix maximal</div>
+        <div class="kpi__icon" aria-hidden="true">⬆️</div>
+        <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Valorisation du stock</div>
+        <div class="kpi__icon" aria-hidden="true">💼</div>
+        <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
+      </div>
+
+      <!-- Deuxième série identique (pour boucle fluide) -->
+      <div class="kpi__card">
+        <div class="kpi__label">Articles</div>
+        <div class="kpi__icon" aria-hidden="true">📦</div>
+        <div class="kpi__value">{{ count() }}</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Prix moyen</div>
+        <div class="kpi__icon" aria-hidden="true">💶</div>
+        <div class="kpi__value">{{ avgPrice() | number:'1.0-2' }} €</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Prix à partir de</div>
+        <div class="kpi__icon" aria-hidden="true">⬇️</div>
+        <div class="kpi__value">{{ minPrice() | number:'1.0-2' }} €</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Prix maximal</div>
+        <div class="kpi__icon" aria-hidden="true">⬆️</div>
+        <div class="kpi__value">{{ maxPrice() | number:'1.0-2' }} €</div>
+      </div>
+
+      <div class="kpi__card">
+        <div class="kpi__label">Valorisation du stock</div>
+        <div class="kpi__icon" aria-hidden="true">💼</div>
+        <div class="kpi__value">{{ totalValue() | number:'1.0-2' }} €</div>
+      </div>
+
     </section>
   </div>
 
@@ -95,15 +104,38 @@
 
     <div class="cards">
       <article class="card" *ngFor="let p of featured(); trackBy: trackById">
-        <div class="card__image">
-          <img [src]="primaryImage(p.imageUrl)" [alt]="p.nom" loading="eager">
+
+        <!-- ✅ IMAGE + CARROUSEL FADE -->
+        <div class="card__image carousel">
+          <!-- image précédente -->
+          <img
+            class="carousel__img carousel__img--prev"
+            [class.is-active]="isTransitioning(p)"
+            [src]="primaryImage(prevImage(p))"
+            [alt]="p.nom"
+            loading="eager"
+          />
+
+          <!-- image courante -->
+          <img
+            class="carousel__img carousel__img--curr"
+            [class.is-active]="isTransitioning(p)"
+            [src]="primaryImage(currentImage(p))"
+            [alt]="p.nom"
+            loading="eager"
+          />
+
           <div class="card__chip">Top</div>
         </div>
+
+        <!-- CONTENU -->
         <div class="card__body">
           <h3 class="card__title">{{ p.nom }}</h3>
           <p class="card__desc">{{ p.description }}</p>
+
           <div class="card__footer">
             <span class="price">{{ p.prix | currency:'EUR' }}</span>
+
             <button
               type="button"
               class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
@@ -112,13 +144,9 @@
             >
               Ajouter au panier
             </button>
-            <!--
-            <a class="btn btn-outline">
-              Ajouter au panier
-            </a>
-            -->
           </div>
         </div>
+
       </article>
     </div>
   </section>
@@ -132,6 +160,7 @@
         <div class="trust__sub">Suivi en temps réel</div>
       </div>
     </div>
+
     <div class="trust__item">
       <div class="trust__icon">🛠️</div>
       <div>
@@ -139,6 +168,7 @@
         <div class="trust__sub">Réglages offerts</div>
       </div>
     </div>
+
     <div class="trust__item">
       <div class="trust__icon">🔒</div>
       <div>

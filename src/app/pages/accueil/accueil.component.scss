@@ -10,6 +10,9 @@
   --brand-1: #0ea5e9;
   --brand-2: #38bdf8;
   --ring: 0 0 0 0.2rem rgba(56,189,248,.35);
+
+  /* ✅ Carrousel */
+  --fade-ms: 700ms;
 }
 
 .page {
@@ -51,13 +54,13 @@
 /* ====== HERO ====== */
 .hero {
   position: relative;
-  border-radius: 0; /* suppression du cadre */
+  border-radius: 0;
   overflow: hidden;
   color: #0f172a;
-  background: transparent; /* 🔹 plus de fond coloré */
-  box-shadow: none; /* 🔹 suppression de l’ombre */
+  background: transparent;
+  box-shadow: none;
   z-index: 0;
-  /* plus de dégradés / effets inutiles */
+
   &__bg::before,
   &__bg::after {
     content: none;
@@ -73,9 +76,7 @@
     text-align: center;
   }
 
-  &__content {
-    max-width: 720px;
-  }
+  &__content { max-width: 720px; }
 
   &__eyebrow {
     font-size: 12px;
@@ -106,7 +107,6 @@
     flex-wrap: wrap;
   }
 
-  /* --- Image vélo centrée et responsive --- */
   &__media {
     display: flex;
     justify-content: center;
@@ -116,8 +116,8 @@
 
   &__image {
     width: 80%;
-    max-width: 600px; 
-    margin: 0 auto; /* 🔹 centrée horizontalement */
+    max-width: 600px;
+    margin: 0 auto;
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
@@ -128,13 +128,12 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* 🔹 garde les proportions du vélo */
+      object-fit: contain;
       display: block;
-      object-position: center; /* 🔹 centré horizontalement et verticalement */
+      object-position: center;
     }
   }
 
-  /* --- Badge facultatif sous l’image --- */
   &__badge {
     margin-top: 12px;
     display: inline-flex;
@@ -148,7 +147,7 @@
     padding: 8px 14px;
     box-shadow: 0 4px 14px rgba(2, 6, 23, 0.12);
     pointer-events: none;
-    position: static;      /* au lieu d'absolute */
+    position: static;
     transform: none;
   }
 
@@ -159,57 +158,40 @@
     background: var(--primary, #22c55e);
   }
 
-  &__badge-title {
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  &__badge-sub {
-    font-size: 12px;
-    color: #475569;
-  }
+  &__badge-title { font-weight: 700; font-size: 14px; }
+  &__badge-sub { font-size: 12px; color: #475569; }
 }
 
-/* --- Responsive --- */
 @media (min-width: 768px) {
-  .hero__inner {
-    flex-direction: row;
-    text-align: left;
-  }
-  .hero__cta {
-    justify-content: flex-start;
-  }
+  .hero__inner { flex-direction: row; text-align: left; }
+  .hero__cta { justify-content: flex-start; }
 }
-
 
 /* ====== KPI ====== */
 .kpi-wrapper {
   width: 100%;
-  overflow: hidden;         /* masque ce qui sort du cadre */
+  overflow: hidden;
   position: relative;
   background: var(--background, transparent);
   padding: 20px 0;
 }
 
-/* Ligne KPI animée */
 .kpi {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-  width: max-content;        /* largeur auto selon le contenu */
+  width: max-content;
   animation: scroll-left 25s linear infinite;
 }
 
-/* Animation continue */
 @keyframes scroll-left {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* la moitié, car contenu dupliqué */
+  100% { transform: translateX(-50%); }
 }
 
-/* Cartes KPI */
 .kpi__card {
-  flex: 0 0 auto;            /* empêche le redimensionnement */
-  width: 200px;              /* fixe la largeur pour rythme constant */
+  flex: 0 0 auto;
+  width: 200px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -241,11 +223,7 @@
   color: var(--muted);
 }
 
-/* (Optionnel) Pause au survol */
-.kpi-wrapper:hover .kpi {
-  animation-play-state: paused;
-}
-
+.kpi-wrapper:hover .kpi { animation-play-state: paused; }
 
 /* ====== FEATURED ====== */
 .section-title {
@@ -261,10 +239,7 @@
   font-weight: 700;
 }
 
-.featured {
-  display: grid;
-  gap: 12px;
-}
+.featured { display: grid; gap: 12px; }
 
 .featured__header {
   display: flex;
@@ -272,14 +247,12 @@
   justify-content: space-between;
 }
 
-/* Grille des cartes produits */
 .cards {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* Carte produit */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -296,17 +269,63 @@
   box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
 }
 
-/* Image produit */
+/* ✅ IMPORTANT : on ne style PLUS tous les img globalement,
+   sinon ça casse le carrousel (position:absolute). */
 .card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;      /* garde l’objet entier */
-  object-position: center;
   display: block;
-  padding: 10px;            /* marges internes */
 }
 
-/* Étiquette (ex: "Nouveau") */
+/* Conteneur image de carte */
+.card__image {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+
+  /* ✅ pour garantir une hauteur même avec images absolues */
+  aspect-ratio: 16 / 10;
+  min-height: 220px;
+}
+
+/* ✅ Carrousel (fade) */
+.card__image.carousel {
+  overflow: hidden;
+}
+
+/* Les 2 images superposées */
+.carousel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Garde ton rendu “contain + padding” */
+  object-fit: contain;
+  object-position: center;
+  padding: 10px;
+
+  /* Fade */
+  transition: opacity var(--fade-ms) ease;
+  will-change: opacity;
+}
+
+/* Image précédente : cachée par défaut */
+.carousel__img--prev {
+  opacity: 0;
+}
+
+/* Image courante : visible */
+.carousel__img--curr {
+  opacity: 1;
+}
+
+/* Pendant transition : on garde la logique simple (crossfade géré par TS)
+   Si tu veux accentuer l'effet, on peut aussi jouer sur un léger scale. */
+.carousel__img.is-active {
+  /* pas obligatoire, mais aide à rendre la transition plus “souple” */
+  transform: translateZ(0);
+}
+
+/* Chip “Top” */
 .card__chip {
   position: absolute;
   top: 10px;
@@ -320,6 +339,7 @@
   border: 1px solid #a7f3d0;
   border-radius: 999px;
   box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
+  z-index: 2;
 }
 
 /* Contenu de la carte */
@@ -336,22 +356,19 @@
   color: var(--text);
 }
 
-/* Description avec compatibilité line-clamp */
 .card__desc {
   margin: 0;
   color: #475569;
   font-size: 14px;
   line-height: 1.45;
 
-  /* Compatibilité multi-navigateurs */
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* Chrome / Safari / Edge */
-  line-clamp: 2;         /* Standard */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
-/* Footer de la carte */
 .card__footer {
   display: flex;
   align-items: center;
@@ -362,8 +379,13 @@
 
 /* ====== TRUST STRIP ====== */
 .trust {
-  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px;
-  background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
   box-shadow: 0 8px 18px rgba(2,6,23,.06);
 
   &__item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; }
@@ -378,6 +400,7 @@
   .kpi { grid-template-columns: repeat(3, 1fr); }
   .cards { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 640px) {
   .kpi { grid-template-columns: repeat(2, 1fr); }
   .cards { grid-template-columns: 1fr; }
