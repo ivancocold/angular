@@ -21,7 +21,7 @@
     <div *ngIf="items.length; else empty">
       <ul class="panier__list">
         <li *ngFor="let it of items; trackBy: trackById" class="panier__item">
-          <img [ngSrc]="it.produit.imageUrl" width="96" height="96" [alt]="it.produit.nom" class="panier__img" />
+          <img [ngSrc]="it.produit.imageUrls" width="96" height="96" [alt]="it.produit.nom" class="panier__img" />
 
           <div class="panier__content">
             <h3 class="panier__title">{{ it.produit.nom }}</h3>

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 export interface Produit {
   id: number;
   nom: string;
+  categorie?: string;
+  sous_categorie?: string;
   description: string;
   prix: number;
   //Pour gérer plusieurs images par produit, je les stocke dans un tableau
@@ -16,29 +18,41 @@ export class CatalogueService {
     {
       id: 1,
       nom: 'Aeroad CFR Di2',
+      categorie: 'Vélo',
+      sous_categorie: 'Vélo de route',
       description: 'Vélo de route avec cadre en carbone ultra-léger emblématique, roulé par les pros sur les plus grandes courses. Roues carbone DT Swiss ARC ultra-réactives. Groupe Shimano Dura-Ace Di2 haut de gamme. Capteur de puissance Shimano. Cockpit réglable en carbone.',
       prix: 1599.00,
       imageUrls: 
       [
         'https://savaclub.com/wp-content/uploads/2024/05/AK105FullCarbonRoadBike-Aurora.webp',
-        'https://dma.canyon.com/image/upload/t_web-detail/w_1300,h_1300,c_fill/b_rgb:F2F2F2/f_auto/q_auto/v1749020113/2026_FULL_aeroad_cfr-di2_4039_R108_P03_rb7wpt'
+        'https://dma.canyon.com/image/upload/t_web-detail/w_1300,h_1300,c_fill/b_rgb:F2F2F2/f_auto/q_auto/v1749020113/2026_FULL_aeroad_cfr-di2_4039_R108_P03_rb7wpt',
+        'https://dma.canyon.com/image/upload/w_1300,h_1300,c_fill/f_auto/q_auto/v1749795857/2026_TOP-3_aeroad_cfr-di2_4039_R108_P03_adjustable-cockpit_ecmdeh',
+        'https://dma.canyon.com/image/upload/w_1300,h_1300,c_fill/f_auto/q_auto/v1749795854/2026_TOP-4_aeroad_cfr-di2_4039_R108_P03_aero-seatpost_ho243d',
+        'https://dma.canyon.com/image/upload/w_1300,h_1300,c_fill/f_auto/q_auto/v1749795860/2026_TOP-6_aeroad_cfr-di2_4039_R108_P03_integrated-tool_knihcn'
       ]
     },
 
     {
       id: 2,
-      nom: 'Vélo tout terrain',
-      description: 'Vélo tout terrain',
+      nom: 'PDQ AL 2',
+      categorie: 'Vélo',
+      sous_categorie: 'VTT',
+      description: 'Vélo tout terrain polyvalent avec cadre en aluminium léger, fourche à suspension pneumatique de 120 mm et pneus larges pour une adhérence optimale sur les sentiers. Transmission 1x12 de SRAM pour une montée facile. Freins à disque mécaniques pour un contrôle fiable dans toutes les conditions.',
       prix: 889.00,
       imageUrls: 
       [
-        'https://cdn.rosebikes.de/cms/cms.68187fed7e14f6.44074144.png?im=Resize=(2000)'
+        'https://cdn.rosebikes.de/cms/cms.68187fed7e14f6.44074144.png?im=Resize=(2000)',
+        'https://storage.rosebikes.com/images/p/245581_1769079316.png?im=Resize=1212',
+        'https://storage.rosebikes.com/images/p/245582_1769079314.png?im=Resize=1212',
+        'https://storage.rosebikes.com/images/p/245583_1769079310.png?im=Resize=1212'
       ]
     },
 
     {
       id: 3,
       nom: 'Vélo électrique',
+      categorie: 'Vélo',
+      sous_categorie: 'Vélo électrique',
       description: 'Vélo électrique',
       prix: 2399.00,
       imageUrls: 
@@ -50,6 +64,8 @@ export class CatalogueService {
     {
       id: 4,
       nom: 'Casque vélo',
+      categorie: 'Accessoire',
+      sous_categorie: 'Casque',
       description: 'Casque vélo',
       prix: 289.00,
       imageUrls: 

@@ -29,6 +29,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
+.angular/
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -43,4 +44,11 @@ Thumbs.db
 
 # Secrets
 .env
-notes_personnelles_sur_angular.docx
+!.env.example
+
+
+# Document files
+*.doc
+*.docx
+*.odt
+*.pdf
