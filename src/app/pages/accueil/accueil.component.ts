@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CatalogueService, Produit } from '../../services/catalogue.service';
 import { PanierService } from '../../services/panier.service';
 
@@ -17,7 +18,7 @@ interface KpiCard {
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatSnackBarModule],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'
 })
@@ -82,7 +83,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   constructor(
     private catalogue: CatalogueService,
-    private panier: PanierService
+    private panier: PanierService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -181,8 +183,11 @@ export class AccueilComponent implements OnInit, OnDestroy {
   // Panier
   // -----------------------------
   AjouterAuPanier(produit: Produit): void {
-    this.panier.add(produit, 1);
-    console.log('Ajouter au panier :', produit);
-    alert(`“${produit.nom}” a été ajouté au panier !`);
+
+    this.snackBar.open(`"${produit.nom}" a été ajouté au panier !`, 'OK', {
+      duration: 2000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 }
