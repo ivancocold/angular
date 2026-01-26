@@ -45,3 +45,60 @@
   border: 1px solid var(--border); background: #fff; color: #ef4444;
   width: 36px; height: 36px; border-radius: 8px; cursor: pointer;
 }
+
+.carousel {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.carousel__img {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.carousel__btn--prev { left: -10px; }
+.carousel__btn--next { right: -10px; }
+
+.carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+  padding: 0;
+}
+
+.carousel__dot.is-active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
