@@ -1,21 +1,75 @@
-
-/* Images homogènes */
-img {
-  height: 14rem; /* ~ h-56 */
-  object-fit: cover;
-  border-radius: 0.75rem 0.75rem 0 0;
-  transition: transform 0.3s ease;
+/* carrousel catalogue */
+.cat-carousel {
+  position: relative;
+  width: 100%;
+  height: 18rem; /* = h-56 */
+  overflow: hidden;
 }
-img:hover { transform: scale(1.03); }
 
-/* Clamp multi-lignes pour la description */
+.cat-carousel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.cat-carousel:hover .cat-carousel__img {
+  transform: scale(1.03);
+}
+
+.cat-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: rgba(255,255,255,.92);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.cat-carousel__btn--prev { left: 10px; }
+.cat-carousel__btn--next { right: 10px; }
+
+.cat-carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.cat-carousel__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.2);
+  background: rgba(255,255,255,.95);
+  cursor: pointer;
+  padding: 0;
+}
+
+.cat-carousel__dot.is-active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* ton clamp reste OK */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* Chrome/Safari/Edge */
-  line-clamp: 2;         /* Standard */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
+
 .cards {
   display: grid;
   gap: 16px;

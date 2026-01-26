@@ -4,12 +4,51 @@
       *ngFor="let produit of produits; trackBy: trackById"
       class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
     >
-      <img
-        [src]="produit.imageUrls[0]"
-        [alt]="produit.nom"
-        class="w-full h-56 object-cover"
-        loading="lazy"
-      />
+
+      <!-- CARROUSEL -->
+      <div
+        class="cat-carousel"
+        (mouseenter)="onHoverStart(produit.id)"
+        (mouseleave)="onHoverEnd(produit.id)"
+      >
+        <img
+          class="cat-carousel__img"
+          [src]="currentImage(produit)"
+          [alt]="produit.nom"
+          loading="lazy"
+        />
+
+        <button
+          *ngIf="produit.imageUrls.length > 1"
+          class="cat-carousel__btn cat-carousel__btn--prev"
+          type="button"
+          (click)="prevImage(produit); $event.stopPropagation()"
+          aria-label="Image précédente"
+        >
+          ‹
+        </button>
+
+        <button
+          *ngIf="produit.imageUrls.length > 1"
+          class="cat-carousel__btn cat-carousel__btn--next"
+          type="button"
+          (click)="nextImage(produit); $event.stopPropagation()"
+          aria-label="Image suivante"
+        >
+          ›
+        </button>
+
+        <div class="cat-carousel__dots" *ngIf="produit.imageUrls.length > 1">
+          <button
+            *ngFor="let _ of produit.imageUrls; let i = index"
+            type="button"
+            class="cat-carousel__dot"
+            [class.is-active]="getIndex(produit.id) === i"
+            (click)="setImage(produit, i); $event.stopPropagation()"
+            [attr.aria-label]="'Aller à l’image ' + (i + 1)"
+          ></button>
+        </div>
+      </div>
 
       <div class="p-4 flex-1 flex flex-col justify-between">
         <div class="space-y-1">
@@ -24,7 +63,6 @@
             {{ produit.prix | currency:'EUR' }}
           </p>
 
-          <!-- Bouton Ajouter au panier -->
           <button
             type="button"
             class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
@@ -35,6 +73,7 @@
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </div>
