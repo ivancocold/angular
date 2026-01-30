@@ -135,106 +135,177 @@ export class CatalogueService {
 
     {
       id: 8,
-      nom: 'Sacoche de selle',
-      description: 'Sacoche de selle',
-      prix: 211.22,
+      nom: 'Sacoche de selle OGIO Duffel Endurance 9.0',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Sacoche'],
+      description: `Bretelles réglables de style sac à dos avec sangle de poitrine réglable.
+      Tech Vault résistant à l'écrasement pour lunettes de soleil et appareils électroniques.
+      Compartiment ventilé pour chaussures et vêtements sales.
+      Poche humide/sèche avec soufflet d'aération à 360°.
+      Le tissu 3M-Tech hautement réfléchissant offre une visibilité exceptionnelle dans des conditions de faible luminosité`,
+      prix: 175.43,
       imageUrls: 
       [
-        'https://topracingshop.fr/hpeciai/bb42fb30600777f02fbe1c4f3b434386/fre_pl_Sac-de-voyage-Ogio-Endurance-9-0-Noir-17150_1.jpg'
+        'https://topracingshop.fr/hpeciai/bb42fb30600777f02fbe1c4f3b434386/fre_pl_Sac-de-voyage-Ogio-Endurance-9-0-Noir-17150_1.jpg',
+        'https://m.media-amazon.com/images/I/61ZhS3wGcQL._AC_SL1000_.jpg',
+        'https://m.media-amazon.com/images/I/61zvYoyEgsL._AC_SL1000_.jpg',
+        'https://m.media-amazon.com/images/I/61mOFoSRZkL._AC_SL1000_.jpg',
+        'https://m.media-amazon.com/images/I/61BHZFPRnLL._AC_SL1000_.jpg'
+
       ]
     },
 
     {
       id: 9,
-      nom: 'Éclairage avant',
-      description: 'Éclairage avant',
+      nom: 'Éclairage vélo ELOPS',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Éclairage'],
+      description: `Éclairage avant et arrière à LED pour vélo, alimenté par piles. Puissance éclairage LED :
+      - éclairage LED avant : 25Lux/75 Lumens et 15Lux/35 lumens en mode ECO
+      - éclairage LED arrière : 5Lux/3 Lumens
+      Homologué code de la route Allemagne (STVZO)
+      Équipé de lentilles spécifiques qui focalisent la lumière pour voir à l'AVANT (devant soit à une vitesse de 15km/h correctement) pour éviter un obstacle et à l'arrière pour être vu à 220°.
+      Piles: 3xAAA pour l'éclairage avant (inclus dans le pack), 2xAA pour l'éclairage arrière (inclus dans le pack). Compatibles avec des piles rechargeables.
+      Pour changer les piles, utiliser une pièce de monnaie pour l'éclairage arrière. Pour l'éclairage avant, il suffit de faire glisser la capot de l'éclairage vers l'arrière`,
       prix: 15.99,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p2943866/k$112fcaf504c2f651829d4ad2159bb841/sq/kit-eclairage-velo-led-st-110-avant-et-arriere-a-piles.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p2943866/k$112fcaf504c2f651829d4ad2159bb841/sq/kit-eclairage-velo-led-st-110-avant-et-arriere-a-piles.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2943863/k$d4994f8fd328e3fcd5ffdaec289c0190/image_pixl.png?format=auto',
+        'https://contents.mediadecathlon.com/p2943865/k$27ce149ef48ec1c3c06bbd0a69f205e5/image_pixl.png?format=auto',
+        'https://contents.mediadecathlon.com/p2943864/k$b894e83735159189786a1db4250645f0/image_pixl.png?format=auto',
+        'https://contents.mediadecathlon.com/p2277070/k$91480cb7e54aaacb3e14d771d0f5577b/image_pixl.png?format=auto'
       ]
     },
 
     {
       id: 10,
-      nom: 'Éclairage arrière',
-      description: 'Éclairage arrière',
+      nom: 'Feu arrière de vélo à LED alimenté par batterie - 80 mm',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Éclairage'],
+      description: `Conçu pour remplacer le feu arrière de votre vélo de ville. L\'accessoire de sécurité indispensable.`,
       prix: 12.99,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p1635058/k$7529d24aeb7460d0fcc5c892bd424449/sq/eclairage-velo-arriere-a-pile-led-80mm.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p1635058/k$7529d24aeb7460d0fcc5c892bd424449/sq/eclairage-velo-arriere-a-pile-led-80mm.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p710760/1cr1/k$105f9d1eea41e39e701ba807c76ccd70/battery-powered-rear-80-mm-led-bike-lights.jpg?f=3000x0&format=auto',
+        'https://contents.mediadecathlon.com/p710759/1cr1/k$d26d99139810949d6616807d14f0ba77/battery-powered-rear-80-mm-led-bike-lights.jpg?f=3000x0&format=auto',
+        'https://contents.mediadecathlon.com/p710755/1cr1/k$d94c4f41238786ad277dc199af752a97/battery-powered-rear-80-mm-led-bike-lights.jpg?f=3000x0&format=auto'
       ]
     },
 
     {
       id: 11,
-      nom: "Bidon d'eau",
-      description: "Bidon d'eau",
+      nom: "Gourde de vélo 550 ml indispensable",
+      categorie: ['Accessoire'],
+      sous_categorie: ['Gourde'],
+      description: `Restez hydraté lors de vos courtes sorties à vélo grâce à cette gourde pratique. D'un volume de 550 ml, cette gourde est simple et fiable. Fabriquée en plastique souple, elle vous permet de boire facilement même en pédalant. Savourez le goût pur de l'eau.`,
       prix: 2.49,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p2721829/k$3b7f00a38a37b966e4792ff10f50a593/image_pixl.png?format=auto'
+        'https://contents.mediadecathlon.com/p2721829/k$3b7f00a38a37b966e4792ff10f50a593/image_pixl.png?format=auto',
+        'https://decathlon.ae/cdn/shop/files/pic_eaec83b7-8e45-45b0-a5e6-bfcf04d189d5.jpg?v=1769724046&width=1000',
+        'https://decathlon.ae/cdn/shop/files/pic_cc8277d2-6560-4143-aa90-a56506057bbe.jpg?v=1769724046&width=1000'
       ]
     },
 
     {
       id: 12,
-      nom: 'Pompe à vélo',
-      description: 'Pompe à vélo',
-      prix: 24.99,
+      nom: 'SKS Pompe à Air et au Sol Air Control 8.0 avec Manomètre, Noir 55,4 cm de long',
+      description: `Pompe à vélo SKS. La matière est plastique. Hauteur : 554 mm. Pression max. : 8 bar`,
+      categorie: ['Accessoire'],
+      sous_categorie: ['Pompe'],
+      prix: 44.00,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p744930/k$f09d6d35d432223e78e3ec6686909afd/sq/pompe-a-pied-velo-air-x-press-80.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p744930/k$f09d6d35d432223e78e3ec6686909afd/sq/pompe-a-pied-velo-air-x-press-80.jpg?format=auto&f=1200x1200',
+        'https://m.media-amazon.com/images/I/51yHYkw34nL._AC_SL1500_.jpg',
+        'https://m.media-amazon.com/images/I/710pLPF+iOL._AC_SL1500_.jpg'
       ]
     },
 
     {
       id: 13,
-      nom: 'Antivol U',
-      description: 'Antivol U',
+      nom: 'Antivol U certifié ART2 D 900 M',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Antivol'],
+      description: `Cet antivol vélo U haute sécurité a été conçu pour protéger votre vélo contre le vol lors d'arrêts de longue durée. Antivol certifié ART2, Sold Secure silver. LE D900 M est un antivol haute sécurité très résistant et ultra compact. Léger et facile à transporter, il permet d'attacher le cadre de votre vélo à un point fixe comme un mobilier urbain.`,
       prix: 29.99,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p2534983/k$7e90b462b51c31d26351ad511f622f97/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p2534983/k$7e90b462b51c31d26351ad511f622f97/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2534981/k$c1f16de82d027cc410de4d288e19a7fe/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2534979/k$1fa8ed04899b2032b1d0483feaba655c/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2534980/k$80e3e1d95ca1060fc7d360d2cf9b94f9/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2534977/k$11e2c956eaa21c15305e9a22855da788/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2534977/k$11e2c956eaa21c15305e9a22855da788/sq/antivol-velo-u-haute-securite-certifie-art2-d-900-m.jpg?format=auto&f=1200x1200'
       ]
     },
 
     {
       id: 14,
-      nom: 'Antivol à chaîne',
-      description: 'Antivol à chaîne',
+      nom: 'Antivol à chaîne certifié art3 920',
+      description: `Nos équipes ont développé cette chaîne antivol de haute sécurité pour sécuriser votre vélo à différentes formes de points d'attache. Certifié ART3 & Sold Secure.
+      Un antivol de haute sécurité de bonne longueur permettant d'attacher 2 vélos, un vélo électrique ou son vélo autour de points fixes à grand diamètre (ex: arbres, poteaux, grilles…).`,
       prix: 59.99,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p2314918/k$9fb0a72702a47f3ff9a026ff07a80136/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p2314918/k$9fb0a72702a47f3ff9a026ff07a80136/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2314919/k$f20886a98a683c8c1797ebe09e4d62bc/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2314916/k$416400f87fc10b0370f79c1790377823/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2314920/k$6bd26c696337504cfa0162ad007627ae/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2314915/k$e754b8addb110ca2433a02faaed97cf0/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        'https://contents.mediadecathlon.com/p2815492/k$47dd88c7c1a64fe35620043478d74c1f/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
+        ''
       ]
     },
 
     {
       id: 15,
-      nom: 'Garde-boue',
-      description: 'Garde-boue',
-      prix: 29.99,
+      nom: 'Garde-boue en aluminuium TrackloX',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Garde-boue'],
+      description:`Garde-boue en aluminium pour XFIXXI TrackloX - Idéal pour le Tracklocross et le bikepacking. Un ensemble de garde-boues intégraux conçu sur mesure pour le XFIXXI TrackloX, offrant une durabilité et une protection inégalées pour rouler par tous les temps, que ce soit en tracklocross ou en bikepacking. Fabriqués en aluminium léger, ces garde-boues s'adaptent facilement aux pneus jusqu'à 700x35c, assurant une protection optimale contre la boue, l'eau et les débris. Aucune modification n'est nécessaire : il suffit de les boulonner sur le XFIXXI TrackloX avec la visserie fournie, pour une utilisation simple et sereine, quel que soit votre niveau. Roulez en toute confiance, quelles que soient les conditions, grâce à cette protection ultime : des garde-boues légers et performants.
+      Spécifications
+      Matériau : Aluminium
+      Compatible : 700x35c max
+      Poids : 620 g environ / paire
+      Prix pour une paire (avant et arrière)
+      Compatible avec les modèles XFIXXI : TrackloX`,
+
+      prix: 59.00,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p3023097/k$efc895440156f64eac0ef2ed97ae4b2f/sq/garde-boues-avant-et-arriere-avec-tringles-rigides-velo-trekking-28.jpg?format=auto&f=1200x1200'
+        'https://xfixxi.ca/cdn/shop/files/Photoroom-20240414-154604_1024x1024.png?v=1713124262',
+        'https://xfixxi.ca/cdn/shop/files/DSC05137_1024x1024.jpg?v=1713124261',
+        'https://xfixxi.ca/cdn/shop/files/DSC05138_1024x1024.jpg?v=1713124261',
+        'https://xfixxi.ca/cdn/shop/files/DSC05139_1024x1024.jpg?v=1713124261',
+        'https://xfixxi.ca/cdn/shop/files/DSC05141_1024x1024.jpg?v=1713124261',
+        'https://xfixxi.ca/cdn/shop/files/DSC05142_1024x1024.jpg?v=1713124261',
+        'https://xfixxi.ca/cdn/shop/files/DSC05147_1024x1024.jpg?v=1713124261'
       ]
     },
 
     {
       id: 16,
-      nom: 'Support téléphone',
-      description: 'Support téléphone',
+      nom: 'Support téléphone Shapeheart',
+      categorie: ['Accessoire'],
+      sous_categorie: ['Support téléphone'],
+      description: 'Système magnétique avec fixation élastique en silicone, plaque métal incluse. Installation facile.',
       prix: 29.99,
       imageUrls: 
       [
-        'https://contents.mediadecathlon.com/p2572653/k$be4514a39480800f3da09fd2db3ac414/sq/support-smartphone-pour-guidon-de-velo-telephone-xl.jpg?format=auto&f=1200x1200'
+        'https://contents.mediadecathlon.com/p2572653/k$be4514a39480800f3da09fd2db3ac414/sq/support-smartphone-pour-guidon-de-velo-telephone-xl.jpg?format=auto&f=1200x1200',
+        'https://shapeheart.fr/cdn/shop/files/MOTOTU.png?v=1743689613&width=1000',
+        'https://shapeheart.fr/cdn/shop/products/Clapplaquemetaladhesive.jpg?v=1763970510&width=1000',
+        'https://shapeheart.fr/cdn/shop/products/Steelplate.jpg?v=1763970510&width=1000',
+        'https://shapeheart.fr/cdn/shop/products/Rangementplaquepochemoto.jpg?v=1763970510&width=1000'
       ]
     },
 
     {
       id: 17,
-      nom: 'Shimano ISCE6100DI',
+      nom: 'Capteur Shimano ISCE6100DI',
       description: 'Capteur de vitesse de vélo SC-E6100. Système E-TUBE. Mode d\'assistance.\n 5 modes d\'assistance : HIGH, NORM, ECO, OFF, WALK.\n Communication étendue par connectivité sans fil.\n Écran large et lisible.\n Communication sans fil avec d\'autres écrans et les applications smartphones.\n Support total E-TUBE PROJECT pour les différents modes d\'utilisation du vélo.\n D-FLY (boîtier de communication sans fil)',
       prix: 184.99,
       imageUrls: 
@@ -263,23 +334,37 @@ export class CatalogueService {
 
     {
       id: 19,
-      nom: 'Maillot cycliste',
-      description: 'Maillot cycliste',
+      nom: 'Maillot cycliste BIC vintage',
+      description: `Maillot long vintage BIC. Une apparence clairement Vintage, pour une conception tout à fait contemporaine.\n
+      La coupe est très actuelle et près du corps pour plus d'aérodynamisme.
+      ✅ il bénéficie d'un séchage rapide grâce au Lycra et au polyester
+      ✅ il est respirant, anti-rétrécissement, anti-transpiration et anti-boulochage, 
+      ✅ il possède 3 poches à l'arrière.
+      Pour les 3 saisons de vélo !`,
       prix: 57.50,
       imageUrls: 
       [
-        'https://maillotcycliste-vintage.fr/cdn/shop/products/Bic_Pen_Retro_Long_sleeve_Cycling_Jersey_1__00721.1510063468_f1668d7c-15ba-43b6-9c0e-b62150e0ecdc_500x.jpg?v=1601881886'
+        'https://maillotcycliste-vintage.fr/cdn/shop/products/Bic_Pen_Retro_Long_sleeve_Cycling_Jersey_1__00721.1510063468_f1668d7c-15ba-43b6-9c0e-b62150e0ecdc_500x.jpg?v=1601881886',
+        'https://iovevelo.com/cdn/shop/products/Maillot-Long-Ete-Vintage-BIC-Dos_800x800.jpg',
+        'https://www.prendas.co.uk/cdn/shop/products/3c_5a1188d4-bc44-48b0-922f-15b7c770bfb0_5000x.jpg?v=1678790386',
+        'https://www.prendas.co.uk/cdn/shop/products/3d_303c0626-7c93-4fd5-8eb8-762aea16b676_5000x.jpg?v=1678790386',
+        'https://www.prendas.co.uk/cdn/shop/products/3e_b271fb14-87a2-4df7-87f3-065e48c68779_5000x.jpg?v=1678790386'
       ]
     },
 
     {
       id: 20,
-      nom: 'Short vélo',
-      description: 'Short vélo',
+      nom: 'Short WAG',
+      categorie: ['Vêtement'],
+      sous_categorie: ['Short'],
+      description: 'Short WAG noir, utilisable à vélo',
       prix: 44.95,
       imageUrls: 
       [
-        'https://i0.wp.com/wodandgo.com/wp-content/uploads/2024/04/Pack-Blackgrip.webp?fit=768%2C1152&ssl=1'
+        'https://i0.wp.com/wodandgo.com/wp-content/uploads/2024/04/Pack-Blackgrip.webp?fit=768%2C1152&ssl=1',
+        'https://i0.wp.com/wodandgo.com/wp-content/uploads/2024/04/short_wag-scaled.webp?fit=1707%2C2560&ssl=1',
+        'https://i0.wp.com/wodandgo.com/wp-content/uploads/2024/04/image00008.webp?fit=1080%2C1619&ssl=1',
+        'https://i0.wp.com/wodandgo.com/wp-content/uploads/2024/04/image00001.webp?fit=1080%2C1619&ssl=1'
       ]
     },
 

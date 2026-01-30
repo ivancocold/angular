@@ -1,6 +1,7 @@
 {
   "name": "angular_project",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "ng": "ng",
@@ -9,19 +10,22 @@
     "start:backend": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "clean": "node -e \"try{require('fs').rmSync('node_modules',{recursive:true,force:true});}catch(e){}; try{require('fs').rmSync('package-lock.json',{force:true});}catch(e){}\"",
+    "reinstall": "npm run clean && npm install",
+    "audit:fix": "npm audit fix",
+    "audit": "npm audit"
   },
-  "private": true,
   "dependencies": {
-    "@angular/animations": "^19.2.18",
-    "@angular/common": "^19.2.18",
-    "@angular/compiler": "^19.2.18",
-    "@angular/core": "^19.2.18",
-    "@angular/forms": "^19.2.18",
-    "@angular/material": "^19.2.19",
-    "@angular/platform-browser": "^19.2.18",
-    "@angular/platform-browser-dynamic": "^19.2.18",
-    "@angular/router": "^19.2.18",
+    "@angular/animations": "19.2.18",
+    "@angular/common": "19.2.18",
+    "@angular/compiler": "19.2.18",
+    "@angular/core": "19.2.18",
+    "@angular/forms": "19.2.18",
+    "@angular/material": "19.2.18",
+    "@angular/platform-browser": "19.2.18",
+    "@angular/platform-browser-dynamic": "19.2.18",
+    "@angular/router": "19.2.18",
     "@prisma/client": "^7.3.0",
     "axios": "^1.13.3",
     "bcryptjs": "^3.0.3",
@@ -29,17 +33,15 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.3",
-    "prisma": "^7.3.0",
     "rxjs": "~7.8.0",
-    "src": "^1.0.0",
     "stripe": "^20.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.12",
-    "@angular/cli": "^19.2.12",
-    "@angular/compiler-cli": "^19.2.18",
+    "@angular-devkit/build-angular": "19.2.18",
+    "@angular/cli": "19.2.18",
+    "@angular/compiler-cli": "19.2.18",
     "@types/jasmine": "~5.1.0",
     "concurrently": "^9.2.1",
     "jasmine-core": "~5.6.0",
@@ -48,6 +50,15 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prisma": "^7.3.0",
     "typescript": "~5.7.2"
+  },
+  "overrides": {
+    "tar": "7.5.4",
+    "qs": "6.14.1",
+    "glob": "10.5.0",
+    "vite": "6.4.1",
+    "js-yaml": "4.1.1",
+    "node-forge": "1.3.2"
   }
 }
