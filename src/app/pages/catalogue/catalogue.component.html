@@ -23,7 +23,7 @@
 
           <!-- Prev/Next si plusieurs images -->
           <button
-            *ngIf="(produit.imageUrls?.length ?? 0) > 1"
+            *ngIf="produit.imageUrls.length > 1"
             class="cat-carousel__btn cat-carousel__btn--prev"
             type="button"
             (click)="prevImage(produit); $event.stopPropagation()"
@@ -33,7 +33,7 @@
           </button>
 
           <button
-            *ngIf="(produit.imageUrls?.length ?? 0) > 1"
+            *ngIf="produit.imageUrls.length > 1"
             class="cat-carousel__btn cat-carousel__btn--next"
             type="button"
             (click)="nextImage(produit); $event.stopPropagation()"
@@ -43,9 +43,9 @@
           </button>
 
           <!-- Dots -->
-          <div class="cat-carousel__dots" *ngIf="(produit.imageUrls?.length ?? 0) > 1">
+          <div class="cat-carousel__dots" *ngIf="produit.imageUrls.length > 1">
             <button
-              *ngFor="let _ of (produit.imageUrls ?? []); let i = index"
+              *ngFor="let _ of (produit.imageUrls); let i = index"
               type="button"
               class="cat-carousel__dot"
               [class.is-active]="getIndex(produit.id) === i"
