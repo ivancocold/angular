@@ -69,10 +69,12 @@ export class AccueilComponent implements OnInit, OnDestroy {
   count = computed(() => this.produits().filter(p => isPositivePrice(p.prix)).length);
 
   totalValue = computed(() =>
-    this.produits().filter(p => isPositivePrice(p.prix)).reduce((sum, p) => sum + (Number(p.prix) || 0), 0)
+    this.produits().filter(p => isPositivePrice(p.prix)).reduce((sum, p) => sum + (Number(p.prix*(p.quantite_en_stock ?? 100)) || 0), 0)
   );
 
-  avgPrice = computed(() => (this.count() ? this.totalValue() / this.count() : 0));
+  //avgPrice = computed(() => (this.count() ? this.totalValue() / this.count() : 0));
+
+  avgPrice = computed(() => (this.count() ? this.produits().filter(p => isPositivePrice(p.prix)).reduce((sum, p) => sum + (p.prix || 0), 0) / this.count() : 0));
 
   minPrice = computed(() =>
     this.count() ? Math.min(...this.produits().filter(p => isPositivePrice(p.prix)).map(p => Number(p.prix) || 0)) : 0
