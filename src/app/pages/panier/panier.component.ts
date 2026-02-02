@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, CurrencyPipe, NgOptimizedImage } from '@angular/common';
-import { PanierService, PanierItem } from '../../services/panier.service';
+import { PanierService, PanierItem } from '../../services/panier/panier.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component

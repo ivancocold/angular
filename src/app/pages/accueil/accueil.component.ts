@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { CatalogueService, Produit } from '../../services/catalogue.service';
-import { PanierService } from '../../services/panier.service';
+import { CatalogueService, Produit } from '../../services/catalogue/catalogue.service';
+import { PanierService } from '../../services/panier/panier.service';
 
 type KpiFmt = 'int' | 'dec';
 
@@ -88,20 +88,21 @@ export class AccueilComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const data = this.catalogue.getProduits();
-    this.produits.set(data);
+    this.catalogue.getProduits$().subscribe(data => {
+      this.produits.set(data);
 
-    // init state pour tous les produits
-    for (const p of data) {
-      this.imgState.set(p.id, { currentIdx: 0, prevIdx: 0, transitioning: false });
-    }
-
-    // carrousel auto : toutes les 5 secondes sur les featured
-    this.carouselTimer = window.setInterval(() => {
-      for (const p of this.featured()) {
-        this.advanceImage(p);
+      // init state pour tous les produits
+      for (const p of data) {
+        this.imgState.set(p.id, { currentIdx: 0, prevIdx: 0, transitioning: false });
       }
-    }, this.SWITCH_MS);
+
+      // carrousel auto : toutes les 5 secondes sur les featured
+      this.carouselTimer = window.setInterval(() => {
+        for (const p of this.featured()) {
+          this.advanceImage(p);
+        }
+      }, this.SWITCH_MS);
+    });
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import type { Produit } from '../services/catalogue.service';
+import type { Produit } from '../catalogue/catalogue.service';
 
 export interface PanierItem {
   produit: Produit;

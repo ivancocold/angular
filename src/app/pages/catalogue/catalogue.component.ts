@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CatalogueService, Produit } from '../../services/catalogue.service';
+import { CatalogueService, Produit } from '../../services/catalogue/catalogue.service';
 import { CommonModule } from '@angular/common';
-import { PanierService } from '../../services/panier.service';
+import { PanierService } from '../../services/panier/panier.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoggerService } from '../../core/services/logger.service';
 
@@ -26,12 +26,14 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.produits = this.catalogueService.getProduits();
+    this.catalogueService.getProduits$().subscribe(produits => {
+      this.produits = produits;
 
-    // démarre autoplay pour chaque produit qui a > 1 image
-    for (const p of this.produits) {
-      if ((p.imageUrls?.length ?? 0) > 1) this.startAutoplay(p);
-    }
+      // démarre autoplay pour chaque produit qui a > 1 image
+      for (const p of this.produits) {
+        if ((p.imageUrls?.length ?? 0) > 1) this.startAutoplay(p);
+      }
+    });
   }
 
   ngOnDestroy(): void {
