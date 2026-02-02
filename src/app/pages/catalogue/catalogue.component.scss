@@ -1,25 +1,10 @@
 /* Catalogue Component SCSS */
+@use '../../../styles/product-cards';
 
 /* =========================
    GRID / 3 colonnes produits
    ========================= */
 
-.cards {
-  display: grid;
-  gap: 24px; // = gap-6
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  /* Responsive propre */
-  @media (max-width: 1024px) { // tablette
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  @media (max-width: 640px) { // mobile
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Si ton HTML garde les classes Tailwind grid-cols-1/2/3/4
-   et que tu veux forcer 3 colonnes sans modifier le HTML : */
 :host ::ng-deep .grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 

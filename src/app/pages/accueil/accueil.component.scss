@@ -1,7 +1,9 @@
 /* Accueil Component SCSS*/
+@use '../../../styles/product-cards';
 
 /* ====== Design Tokens ====== */
-:root {
+:root 
+{
   --bg: #0b1220;
   --text: #0f172a;
   --muted: #64748b;
@@ -17,7 +19,8 @@
   --fade-ms: 700ms;
 }
 
-.page {
+.page 
+{
   padding: clamp(16px, 3vw, 28px);
   display: grid;
   gap: clamp(20px, 3vw, 28px);
@@ -28,7 +31,8 @@
 }
 
 /* ====== Buttons ====== */
-.btn {
+.btn 
+{
   --shadow: 0 10px 24px rgba(2,6,23,0.12);
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px; padding: 10px 16px; border-radius: 12px; font-weight: 700;
@@ -54,7 +58,8 @@
 }
 
 /* ====== HERO ====== */
-.hero {
+.hero 
+{
   position: relative;
   border-radius: 0;
   overflow: hidden;
@@ -220,7 +225,8 @@
   color: var(--text);
 }
 
-.kpi__label {
+.kpi__label 
+{
   font-size: 12px;
   color: var(--muted);
 }
@@ -235,7 +241,8 @@
   color: var(--text);
 }
 
-.link {
+.link 
+{
   color: #2563eb;
   text-decoration: none;
   font-weight: 700;
@@ -243,58 +250,16 @@
 
 .featured { display: grid; gap: 12px; }
 
-.featured__header {
+.featured__header 
+{
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
 
-.cards {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
-}
-
-/* ✅ IMPORTANT : on ne style PLUS tous les img globalement,
-   sinon ça casse le carrousel (position:absolute). */
-.card img {
-  display: block;
-}
-
-/* Conteneur image de carte */
-.card__image {
-  position: relative;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-
-  /* ✅ pour garantir une hauteur même avec images absolues */
-  aspect-ratio: 16 / 10;
-  min-height: 220px;
-}
-
-/* ✅ Carrousel (fade) */
-.card__image.carousel {
-  overflow: hidden;
-}
-
 /* Les 2 images superposées */
-.carousel__img {
+.carousel__img 
+{
   position: absolute;
   inset: 0;
   width: 100%;
@@ -311,73 +276,24 @@
 }
 
 /* Image précédente : cachée par défaut */
-.carousel__img--prev {
+.carousel__img--prev 
+{
   opacity: 0;
 }
 
 /* Image courante : visible */
-.carousel__img--curr {
+.carousel__img--curr 
+{
   opacity: 1;
 }
 
-/* Pendant transition : on garde la logique simple (crossfade géré par TS)
-   Si tu veux accentuer l'effet, on peut aussi jouer sur un léger scale. */
-.carousel__img.is-active {
-  /* pas obligatoire, mais aide à rendre la transition plus “souple” */
+/* Pendant transition : je garde la logique simple (crossfade géré par TS)
+   Je peux aussi jouer sur un léger scale. */
+.carousel__img.is-active 
+{
+  /* Pas obligatoire, mais aide à rendre la transition plus “souple” */
   transform: translateZ(0);
 }
-
-/* Chip “Top” */
-.card__chip {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 6px 10px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #065f46;
-  background: #d1fae5;
-  border: 1px solid #a7f3d0;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
-  z-index: 2;
-}
-
-/* Contenu de la carte */
-.card__body {
-  padding: 12px 14px 14px;
-  display: grid;
-  gap: 10px;
-}
-
-.card__title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--text);
-}
-
-.card__desc {
-  margin: 0;
-  color: #475569;
-  font-size: 14px;
-  line-height: 1.45;
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-}
-
-.card__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.price { font-weight: 900; color: var(--text); }
 
 /* ====== TRUST STRIP ====== */
 .trust {
@@ -394,17 +310,4 @@
   &__icon { font-size: 18px; }
   &__title { font-weight: 800; color: var(--text); }
   &__sub { font-size: 12px; color: var(--muted); }
-}
-
-/* ====== Responsive ====== */
-@media (max-width: 1024px) {
-  .hero__inner { grid-template-columns: 1fr; }
-  .kpi { grid-template-columns: repeat(3, 1fr); }
-  .cards { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .kpi { grid-template-columns: repeat(2, 1fr); }
-  .cards { grid-template-columns: 1fr; }
-  .trust { grid-template-columns: 1fr; }
 }

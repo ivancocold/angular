@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { PanierService, PanierItem } from '../../services/panier/panier.service';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-panier',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, NgOptimizedImage],
+  imports: [CommonModule, CurrencyPipe, NgOptimizedImage, RouterModule],
   templateUrl: './panier.component.html',
   styleUrl: './panier.component.scss'
 })

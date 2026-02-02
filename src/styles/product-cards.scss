@@ -1,0 +1,110 @@
+/*product-cards.scss*/
+
+.cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+}
+
+/* ✅ IMPORTANT : on ne style PLUS tous les img globalement,
+   sinon ça casse le carrousel (position:absolute). */
+.card img {
+  display: block;
+}
+
+/* Conteneur image de carte */
+.card__image {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+
+  /* ✅ pour garantir une hauteur même avec images absolues */
+  aspect-ratio: 16 / 10;
+  min-height: 220px;
+}
+
+/* ✅ Carrousel (fade) */
+.card__image.carousel {
+  overflow: hidden;
+}
+
+/* Chip “Top” */
+.card__chip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #065f46;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
+  z-index: 2;
+}
+
+/* Contenu de la carte */
+.card__body {
+  padding: 12px 14px 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.card__desc {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.45;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price { font-weight: 900; color: var(--text); }
+
+/* ====== Responsive ====== */
+@media (max-width: 1024px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .kpi { grid-template-columns: repeat(3, 1fr); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .kpi { grid-template-columns: repeat(2, 1fr); }
+  .cards { grid-template-columns: 1fr; }
+  .trust { grid-template-columns: 1fr; }
+}

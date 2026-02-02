@@ -1,16 +1,13 @@
 <!-- catalogue.component.html -->
-<section class="p-6">
-  <!-- Etat chargement -->
+<section class="page p-6">
   <ng-container *ngIf="produits$ | async as produits; else loading">
-    <!-- Grille -->
+
     <div class="cards">
-      <article
-        *ngFor="let produit of produits; trackBy: trackById"
-        class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
-      >
-        <!-- CARROUSEL -->
+      <article class="card" *ngFor="let produit of produits; trackBy: trackById">
+
+        <!-- IMAGE / CARROUSEL (on réutilise ton carrousel, mais dans le conteneur de la home) -->
         <div
-          class="cat-carousel"
+          class="card__image carousel cat-carousel"
           (mouseenter)="onHoverStart(produit.id)"
           (mouseleave)="onHoverEnd(produit.id)"
         >
@@ -45,7 +42,7 @@
           <!-- Dots -->
           <div class="cat-carousel__dots" *ngIf="produit.imageUrls.length > 1">
             <button
-              *ngFor="let _ of (produit.imageUrls); let i = index"
+              *ngFor="let _ of produit.imageUrls; let i = index"
               type="button"
               class="cat-carousel__dot"
               [class.is-active]="getIndex(produit.id) === i"
@@ -55,33 +52,27 @@
           </div>
         </div>
 
-        <!-- Contenu -->
-        <div class="p-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-1">
-            <h3 class="text-lg font-semibold text-gray-900 truncate">
-              {{ produit.nom }}
-            </h3>
+        <!-- CONTENU (mêmes classes que la home) -->
+        <div class="card__body">
+          <h3 class="card__title">{{ produit.nom }}</h3>
 
-            <!-- Catégories (optionnel, selon ton modèle) -->
-            <p class="text-xs text-gray-500" *ngIf="(produit.categorie?.length ?? 0) || (produit.sous_categorie?.length ?? 0)">
-              <span *ngIf="(produit.categorie?.length ?? 0)">
-                {{ (produit.categorie ?? []).join(' · ') }}
-              </span>
-              <span *ngIf="(produit.sous_categorie?.length ?? 0)">
-                <span *ngIf="(produit.categorie?.length ?? 0)"> — </span>
-                {{ (produit.sous_categorie ?? []).join(' · ') }}
-              </span>
-            </p>
+          <p
+            class="text-xs text-gray-500"
+            *ngIf="(produit.categorie?.length ?? 0) || (produit.sous_categorie?.length ?? 0)"
+          >
+            <span *ngIf="produit.categorie?.length">
+              {{ (produit.categorie ?? []).join(' · ') }}
+            </span>
+            <span *ngIf="produit.sous_categorie?.length">
+              <span *ngIf="produit.categorie?.length"> — </span>
+              {{ (produit.sous_categorie ?? []).join(' · ') }}
+            </span>
+          </p>
 
-            <p class="text-sm text-gray-600 line-clamp-2">
-              {{ produit.description }}
-            </p>
-          </div>
+          <p class="card__desc">{{ produit.description }}</p>
 
-          <div class="mt-3 flex items-center justify-between gap-3">
-            <p class="text-lg font-bold text-blue-600">
-              {{ produit.prix | currency:'EUR' }}
-            </p>
+          <div class="card__footer">
+            <span class="price">{{ produit.prix | currency:'EUR' }}</span>
 
             <button
               type="button"
@@ -93,16 +84,15 @@
             </button>
           </div>
         </div>
+
       </article>
     </div>
 
-    <!-- Etat vide -->
     <p *ngIf="produits.length === 0" class="text-center text-gray-500 mt-10">
       Aucun produit disponible pour le moment.
     </p>
   </ng-container>
 
-  <!-- Template chargement -->
   <ng-template #loading>
     <div class="text-center text-gray-500 py-10">
       Chargement du catalogue…

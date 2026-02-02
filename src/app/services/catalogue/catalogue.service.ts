@@ -235,8 +235,8 @@ export class CatalogueService {
       imageUrls: 
       [
         'https://contents.mediadecathlon.com/p2721829/k$3b7f00a38a37b966e4792ff10f50a593/image_pixl.png?format=auto',
-        'https://decathlon.ae/cdn/shop/files/pic_eaec83b7-8e45-45b0-a5e6-bfcf04d189d5.jpg?v=1769724046&width=1000',
-        'https://decathlon.ae/cdn/shop/files/pic_cc8277d2-6560-4143-aa90-a56506057bbe.jpg?v=1769724046&width=1000'
+        'https://contents.mediadecathlon.com/p2721828/k$09ed9922c4e94b20339130b145112f46/550-ml-cycling-water-bottle-essential-white.jpg',
+        'https://contents.mediadecathlon.com/p2721827/k$adf0311a97bd4ef9a50f38a10ea11449/550-ml-cycling-water-bottle-essential-white.jpg'
       ]
     },
 
