@@ -3,6 +3,7 @@ import { CatalogueService, Produit } from '../../services/catalogue.service';
 import { CommonModule } from '@angular/common';
 import { PanierService } from '../../services/panier.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoggerService } from '../../core/services/logger.service';
 
 @Component({
   selector: 'app-catalogue',
@@ -20,7 +21,8 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   constructor(
     private catalogueService: CatalogueService,
     private panier: PanierService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private logger: LoggerService
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +90,10 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   }
 
   // --- panier ---
-  AjouterAuPanier(produit: Produit): void {
+    AjouterAuPanier(produit: Produit): void {
+    // Log DEV uniquement (ne sortira pas en prod)
+    this.logger.debug('[Panier] Ajout produit', { id: produit.id, nom: produit.nom });
+
     this.panier.add(produit, 1);
 
     this.snackBar.open(`“${produit.nom}” a été ajouté au panier !`, 'OK', {
