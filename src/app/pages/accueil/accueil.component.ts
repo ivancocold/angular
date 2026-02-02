@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CatalogueService, Produit } from '../../services/catalogue/catalogue.service';
 import { PanierService } from '../../services/panier/panier.service';
+import { isPositivePrice } from '../../services/catalogue/catalogue.service';
+
 
 type KpiFmt = 'int' | 'dec';
 
@@ -38,12 +40,15 @@ export class AccueilComponent implements OnInit, OnDestroy {
    * - prevIdx: index précédent (pour crossfade)
    * - transitioning: true pendant le fondu
    */
-  private imgState = new Map<number, {
+  private imgState = new Map<number,
+  {
     currentIdx: number;
     prevIdx: number;
     transitioning: boolean;
     timeoutId?: number;
   }>();
+
+  
 
   // ➜ Déclaration des cartes KPI
   cards: KpiCard[] = [
@@ -58,27 +63,28 @@ export class AccueilComponent implements OnInit, OnDestroy {
   trackById = (_: number, p: Produit) => p.id;
 
   produits = signal<Produit[]>([]);
+  
 
   // --- KPI calculés ---
-  count = computed(() => this.produits().length);
+  count = computed(() => this.produits().filter(p => isPositivePrice(p.prix)).length);
 
   totalValue = computed(() =>
-    this.produits().reduce((sum, p) => sum + (Number(p.prix) || 0), 0)
+    this.produits().filter(p => isPositivePrice(p.prix)).reduce((sum, p) => sum + (Number(p.prix) || 0), 0)
   );
 
   avgPrice = computed(() => (this.count() ? this.totalValue() / this.count() : 0));
 
   minPrice = computed(() =>
-    this.count() ? Math.min(...this.produits().map(p => Number(p.prix) || 0)) : 0
+    this.count() ? Math.min(...this.produits().filter(p => isPositivePrice(p.prix)).map(p => Number(p.prix) || 0)) : 0
   );
 
   maxPrice = computed(() =>
-    this.count() ? Math.max(...this.produits().map(p => Number(p.prix) || 0)) : 0
+    this.count() ? Math.max(...this.produits().filter(p => isPositivePrice(p.prix)).map(p => Number(p.prix) || 0)) : 0
   );
 
   // Produits mis en avant: top 3 par prix (décroissant)
   featured = computed<Produit[]>(() =>
-    [...this.produits()].sort((a, b) => (b.prix || 0) - (a.prix || 0)).slice(0, 3)
+    [...this.produits()].filter(p => isPositivePrice(p.prix)).sort((a, b) => (b.prix || 0) - (a.prix || 0)).slice(0, 3)
   );
 
   constructor(
@@ -183,12 +189,34 @@ export class AccueilComponent implements OnInit, OnDestroy {
   // -----------------------------
   // Panier
   // -----------------------------
-  AjouterAuPanier(produit: Produit): void {
+  AjouterAuPanier(produit: Produit): void 
+  {
+    // Guard prix
+    if (!isPositivePrice(produit.prix))
+      {
+        this.snackBar.open(`Prix invalide pour "${produit.nom}"`, 'OK', { duration: 2500 });
+        return;
+      }
 
-    this.snackBar.open(`"${produit.nom}" a été ajouté au panier !`, 'OK', {
-      duration: 2000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
+    try 
+    {
+
+      this.panier.add(produit, 1);
+
+      this.snackBar.open
+      (
+        `"${produit.nom}" a été ajouté au panier !`, 'OK',
+        {
+          duration: 2000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        }
+      );
+    }
+    catch (e)
+    {
+      const msg = e instanceof Error ? e.message : 'Erreur lors de l’ajout au panier';
+      this.snackBar.open(msg, 'OK', { duration: 2500 });
+    }
   }
 }

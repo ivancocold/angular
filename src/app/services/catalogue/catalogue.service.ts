@@ -2,8 +2,24 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
 
-export interface Produit {
-  id: number;
+export function isFiniteNumber(x: unknown): x is number
+{
+  return typeof x === 'number' && Number.isFinite(x);
+}
+
+export function isPositivePrice(x: unknown): x is number
+{
+  return isFiniteNumber(x) && x > 0;
+}
+
+export function isPositiveInt(x: unknown): x is number
+{
+  return isFiniteNumber(x) && Number.isInteger(x) && x > 0;
+}
+
+export interface Produit
+{
+  readonly id: number;
   nom: string;
   categorie?: string[];
   sous_categorie?: string[];

@@ -1,30 +1,53 @@
-<section class="panier">
+<section class="panier" aria-labelledby="panier-title">
+  <!-- HEADER -->
   <header class="panier__header">
-    <h1>Votre panier</h1>
+    <div class="panier__header-left">
+      <h1 id="panier-title">Votre panier</h1>
+      <p class="panier__subtitle" aria-live="polite">
+        {{ count() }} article{{ count() > 1 ? 's' : '' }}
+      </p>
+    </div>
 
-    <div class="panier__meta">
-      <span>{{ count() }} article{{ count() > 1 ? 's' : '' }}</span>
-      <span class="panier__total">Total : {{ total() | currency:'EUR' }}</span>
+    <div class="panier__meta" role="group" aria-label="Résumé du panier">
+      <span class="panier__total">
+        Total : <strong>{{ total() | currency:'EUR' }}</strong>
+      </span>
 
-      <button class="btn btn--danger" (click)="clear()" [disabled]="count() === 0">
-        Vider le panier
-      </button>
+      <div class="panier__actions">
+        <button
+          class="btn btn--danger"
+          type="button"
+          (click)="clear()"
+          [disabled]="count() === 0"
+        >
+          Vider le panier
+        </button>
 
-      <button class="btn btn--primary" (click)="pay()" [disabled]="count() === 0">
-        Passer au paiement
-      </button>
+        <button
+          class="btn btn--primary"
+          type="button"
+          (click)="pay()"
+          [disabled]="count() === 0"
+        >
+          Passer au paiement
+        </button>
+      </div>
     </div>
   </header>
 
+  <!-- CONTENT -->
   <ng-container *ngIf="items$ | async as items">
-    <div *ngIf="items.length; else empty">
-      <ul class="panier__list">
-        <li *ngFor="let it of items; trackBy: trackById" class="panier__item">
+    <ng-container *ngIf="items.length; else empty">
 
-          <!-- CARROUSEL -->
+      <ul class="panier__list" aria-label="Articles du panier">
+        <li
+          *ngFor="let it of items; trackBy: trackById"
+          class="panier__item"
+          [attr.aria-label]="'Article : ' + it.produit.nom"
+        >
+          <!-- MEDIA / CARROUSEL -->
           <div
-            class="carousel"
-            *ngIf="getUrls(it) as urls"
+            class="panier__media carousel"
             (mouseenter)="onHoverStart(it.produit.id)"
             (mouseleave)="onHoverEnd(it.produit.id)"
           >
@@ -34,61 +57,115 @@
               width="96"
               height="96"
               [alt]="it.produit.nom"
+              loading="lazy"
+              decoding="async"
             />
 
-            <button
-              *ngIf="urls.length > 1"
-              class="carousel__btn carousel__btn--prev"
-              type="button"
-              (click)="prevImage(it); $event.stopPropagation()"
-              aria-label="Image précédente"
-            >
-              ‹
-            </button>
-
-            <button
-              *ngIf="urls.length > 1"
-              class="carousel__btn carousel__btn--next"
-              type="button"
-              (click)="nextImage(it); $event.stopPropagation()"
-              aria-label="Image suivante"
-            >
-              ›
-            </button>
-
-            <div class="carousel__dots" *ngIf="urls.length > 1">
+            <!-- Contrôles carrousel -->
+            <ng-container *ngIf="getUrls(it) as urls">
               <button
-                *ngFor="let _ of urls; let i = index"
+                *ngIf="urls.length > 1"
+                class="carousel__btn carousel__btn--prev"
                 type="button"
-                class="carousel__dot"
-                [class.is-active]="getIndex(it) === i"
-                (click)="setImage(it, i); $event.stopPropagation()"
-                [attr.aria-label]="'Aller à l’image ' + (i + 1)"
-              ></button>
-            </div>
+                (click)="prevImage(it); $event.stopPropagation()"
+                aria-label="Image précédente"
+                title="Image précédente"
+              >
+                ‹
+              </button>
+
+              <button
+                *ngIf="urls.length > 1"
+                class="carousel__btn carousel__btn--next"
+                type="button"
+                (click)="nextImage(it); $event.stopPropagation()"
+                aria-label="Image suivante"
+                title="Image suivante"
+              >
+                ›
+              </button>
+
+              <div
+                class="carousel__dots"
+                *ngIf="urls.length > 1"
+                role="tablist"
+                aria-label="Choisir une image"
+              >
+                <button
+                  *ngFor="let _ of urls; let i = index"
+                  type="button"
+                  class="carousel__dot"
+                  [class.is-active]="getIndex(it) === i"
+                  (click)="setImage(it, i); $event.stopPropagation()"
+                  [attr.aria-label]="'Aller à l’image ' + (i + 1)"
+                  [attr.aria-selected]="getIndex(it) === i"
+                  role="tab"
+                ></button>
+              </div>
+            </ng-container>
           </div>
 
+          <!-- INFO -->
           <div class="panier__content">
-            <h3 class="panier__title">{{ it.produit.nom }}</h3>
-            <p class="panier__price">{{ it.produit.prix | currency:'EUR' }}</p>
+            <div class="panier__top">
+              <h3 class="panier__title">{{ it.produit.nom }}</h3>
+              <p class="panier__price">
+                {{ it.produit.prix | currency:'EUR' }}
+              </p>
+            </div>
 
-            <div class="panier__qty">
-              <button class="qty-btn" (click)="dec(it.produit.id)" aria-label="Diminuer">−</button>
-              <input class="qty-input" [value]="it.qty" readonly aria-label="Quantité" />
-              <button class="qty-btn" (click)="inc(it.produit.id)" aria-label="Augmenter">+</button>
+            <!-- QTY -->
+            <div class="panier__qty" role="group" aria-label="Quantité">
+              <button
+                class="qty-btn"
+                type="button"
+                (click)="dec(it.produit.id)"
+                aria-label="Diminuer la quantité"
+                title="Diminuer"
+              >
+                −
+              </button>
+
+              <output class="qty-output" [attr.aria-label]="'Quantité : ' + it.qty">
+                {{ it.qty }}
+              </output>
+
+              <button
+                class="qty-btn"
+                type="button"
+                (click)="inc(it.produit.id)"
+                aria-label="Augmenter la quantité"
+                title="Augmenter"
+              >
+                +
+              </button>
             </div>
           </div>
 
-          <button class="remove-btn" (click)="remove(it.produit.id)" aria-label="Supprimer">
+          <!-- REMOVE -->
+          <button
+            class="remove-btn"
+            type="button"
+            (click)="remove(it.produit.id)"
+            [attr.aria-label]="'Supprimer ' + it.produit.nom + ' du panier'"
+            title="Supprimer"
+          >
             ✕
           </button>
         </li>
       </ul>
-    </div>
+    </ng-container>
 
+    <!-- EMPTY -->
     <ng-template #empty>
-      <div class="panier__empty">
-        <p>Votre panier est vide.</p>
+      <div class="panier__empty" role="status" aria-live="polite">
+        <h2 class="panier__empty-title">Votre panier est vide</h2>
+        <p class="panier__empty-text">
+          Ajoutez des produits depuis le catalogue pour les retrouver ici.
+        </p>
+        <a class="btn btn--primary panier__empty-cta" routerLink="/catalogue">
+          Voir le catalogue
+        </a>
       </div>
     </ng-template>
   </ng-container>
