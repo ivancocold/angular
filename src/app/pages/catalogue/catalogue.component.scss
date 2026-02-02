@@ -1,59 +1,160 @@
-/* carrousel catalogue */
+/* =========================
+   GRID / 3 colonnes produits
+   ========================= */
+
+.cards {
+  display: grid;
+  gap: 24px; // = gap-6
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  /* Responsive propre */
+  @media (max-width: 1024px) { // tablette
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (max-width: 640px) { // mobile
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Si ton HTML garde les classes Tailwind grid-cols-1/2/3/4
+   et que tu veux forcer 3 colonnes sans modifier le HTML : */
+:host ::ng-deep .grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================
+   CARROUSEL
+   ========================= */
+
 .cat-carousel {
   position: relative;
   width: 100%;
-  height: 18rem; /* = h-56 */
+  height: 18rem; /* 288px */
   overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+
+  /* léger fond pour mieux “porter” les images en contain */
+  background: radial-gradient(circle at 50% 30%, rgba(0,0,0,.03), transparent 55%);
+
+  /* améliore la perf des animations */
+  will-change: transform;
 }
 
 .cat-carousel__img {
   width: 100%;
   height: 100%;
+  display: block;
+
+  /* contain pour ne pas couper */
   object-fit: contain;
   object-position: center;
-  display: block;
+
+  /* animation douce */
+  transition: transform 220ms ease, filter 220ms ease;
 }
 
 .cat-carousel:hover .cat-carousel__img {
   transform: scale(1.03);
+  filter: saturate(1.02);
 }
 
+/* Boutons prev/next : invisibles au repos, apparaissent au hover/focus */
 .cat-carousel__btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,.15);
+
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(0,0,0,.12);
   background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+
   cursor: pointer;
   display: grid;
   place-items: center;
+
   line-height: 1;
   padding: 0;
+
+  /* “fade in” au hover */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease, background 180ms ease;
+
+  /* accessibilité : focus visible */
+  &:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, .55); /* blue-600 */
+    outline-offset: 2px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background: rgba(255,255,255,.98);
+    transform: translateY(-50%) scale(1.03);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.98);
+  }
+}
+
+.cat-carousel:hover .cat-carousel__btn {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .cat-carousel__btn--prev { left: 10px; }
 .cat-carousel__btn--next { right: 10px; }
 
+/* Dots : fond léger + meilleure visibilité */
 .cat-carousel__dots {
   position: absolute;
   left: 50%;
   bottom: 10px;
   transform: translateX(-50%);
+
   display: flex;
-  gap: 6px;
+  gap: 8px;
+
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(0,0,0,.08);
+  backdrop-filter: blur(6px);
 }
 
 .cat-carousel__dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.2);
+
+  border: 1px solid rgba(0,0,0,.18);
   background: rgba(255,255,255,.95);
+
   cursor: pointer;
   padding: 0;
+
+  transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, .55);
+    outline-offset: 2px;
+  }
 }
 
 .cat-carousel__dot.is-active {
@@ -61,17 +162,13 @@
   border-color: #2563eb;
 }
 
-/* ton clamp reste OK */
+/* =========================
+   Clamp (ok)
+   ========================= */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
-}
-
-.cards {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }

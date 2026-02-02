@@ -1,79 +1,111 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-  <div class="cards">
-    <div
-      *ngFor="let produit of produits; trackBy: trackById"
-      class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
-    >
-
-      <!-- CARROUSEL -->
-      <div
-        class="cat-carousel"
-        (mouseenter)="onHoverStart(produit.id)"
-        (mouseleave)="onHoverEnd(produit.id)"
+<!-- catalogue.component.html -->
+<section class="p-6">
+  <!-- Etat chargement -->
+  <ng-container *ngIf="produits$ | async as produits; else loading">
+    <!-- Grille -->
+    <div class="cards">
+      <article
+        *ngFor="let produit of produits; trackBy: trackById"
+        class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
       >
-        <img
-          class="cat-carousel__img"
-          [src]="currentImage(produit)"
-          [alt]="produit.nom"
-          loading="lazy"
-        />
-
-        <button
-          *ngIf="produit.imageUrls.length > 1"
-          class="cat-carousel__btn cat-carousel__btn--prev"
-          type="button"
-          (click)="prevImage(produit); $event.stopPropagation()"
-          aria-label="Image précédente"
+        <!-- CARROUSEL -->
+        <div
+          class="cat-carousel"
+          (mouseenter)="onHoverStart(produit.id)"
+          (mouseleave)="onHoverEnd(produit.id)"
         >
-          ‹
-        </button>
+          <img
+            class="cat-carousel__img"
+            [src]="currentImage(produit)"
+            [alt]="produit.nom"
+            loading="lazy"
+          />
 
-        <button
-          *ngIf="produit.imageUrls.length > 1"
-          class="cat-carousel__btn cat-carousel__btn--next"
-          type="button"
-          (click)="nextImage(produit); $event.stopPropagation()"
-          aria-label="Image suivante"
-        >
-          ›
-        </button>
-
-        <div class="cat-carousel__dots" *ngIf="produit.imageUrls.length > 1">
+          <!-- Prev/Next si plusieurs images -->
           <button
-            *ngFor="let _ of produit.imageUrls; let i = index"
+            *ngIf="(produit.imageUrls?.length ?? 0) > 1"
+            class="cat-carousel__btn cat-carousel__btn--prev"
             type="button"
-            class="cat-carousel__dot"
-            [class.is-active]="getIndex(produit.id) === i"
-            (click)="setImage(produit, i); $event.stopPropagation()"
-            [attr.aria-label]="'Aller à l’image ' + (i + 1)"
-          ></button>
-        </div>
-      </div>
-
-      <div class="p-4 flex-1 flex flex-col justify-between">
-        <div class="space-y-1">
-          <h3 class="text-lg font-semibold text-gray-900 truncate">{{ produit.nom }}</h3>
-          <p class="text-sm text-gray-600 line-clamp-2">
-            {{ produit.description }}
-          </p>
-        </div>
-
-        <div class="mt-3 flex items-center justify-between">
-          <p class="text-lg font-bold text-blue-600">
-            {{ produit.prix | currency:'EUR' }}
-          </p>
-
-          <button
-            type="button"
-            class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
-            (click)="AjouterAuPanier(produit)"
-            [attr.aria-label]="'Ajouter ' + produit.nom + ' au panier'"
+            (click)="prevImage(produit); $event.stopPropagation()"
+            aria-label="Image précédente"
           >
-            Ajouter au panier
+            ‹
           </button>
-        </div>
-      </div>
 
+          <button
+            *ngIf="(produit.imageUrls?.length ?? 0) > 1"
+            class="cat-carousel__btn cat-carousel__btn--next"
+            type="button"
+            (click)="nextImage(produit); $event.stopPropagation()"
+            aria-label="Image suivante"
+          >
+            ›
+          </button>
+
+          <!-- Dots -->
+          <div class="cat-carousel__dots" *ngIf="(produit.imageUrls?.length ?? 0) > 1">
+            <button
+              *ngFor="let _ of (produit.imageUrls ?? []); let i = index"
+              type="button"
+              class="cat-carousel__dot"
+              [class.is-active]="getIndex(produit.id) === i"
+              (click)="setImage(produit, i); $event.stopPropagation()"
+              [attr.aria-label]="'Aller à l’image ' + (i + 1)"
+            ></button>
+          </div>
+        </div>
+
+        <!-- Contenu -->
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div class="space-y-1">
+            <h3 class="text-lg font-semibold text-gray-900 truncate">
+              {{ produit.nom }}
+            </h3>
+
+            <!-- Catégories (optionnel, selon ton modèle) -->
+            <p class="text-xs text-gray-500" *ngIf="(produit.categorie?.length ?? 0) || (produit.sous_categorie?.length ?? 0)">
+              <span *ngIf="(produit.categorie?.length ?? 0)">
+                {{ (produit.categorie ?? []).join(' · ') }}
+              </span>
+              <span *ngIf="(produit.sous_categorie?.length ?? 0)">
+                <span *ngIf="(produit.categorie?.length ?? 0)"> — </span>
+                {{ (produit.sous_categorie ?? []).join(' · ') }}
+              </span>
+            </p>
+
+            <p class="text-sm text-gray-600 line-clamp-2">
+              {{ produit.description }}
+            </p>
+          </div>
+
+          <div class="mt-3 flex items-center justify-between gap-3">
+            <p class="text-lg font-bold text-blue-600">
+              {{ produit.prix | currency:'EUR' }}
+            </p>
+
+            <button
+              type="button"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
+              (click)="AjouterAuPanier(produit)"
+              [attr.aria-label]="'Ajouter ' + produit.nom + ' au panier'"
+            >
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
-  </div>
-</div>
+
+    <!-- Etat vide -->
+    <p *ngIf="produits.length === 0" class="text-center text-gray-500 mt-10">
+      Aucun produit disponible pour le moment.
+    </p>
+  </ng-container>
+
+  <!-- Template chargement -->
+  <ng-template #loading>
+    <div class="text-center text-gray-500 py-10">
+      Chargement du catalogue…
+    </div>
+  </ng-template>
+</section>

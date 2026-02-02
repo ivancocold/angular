@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CatalogueService, Produit } from '../../services/catalogue/catalogue.service';
 import { CommonModule } from '@angular/common';
+import { CatalogueService, Produit } from '../../services/catalogue/catalogue.service';
 import { PanierService } from '../../services/panier/panier.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoggerService } from '../../core/services/logger.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-catalogue',
@@ -12,7 +13,7 @@ import { LoggerService } from '../../core/services/logger.service';
   styleUrl: './catalogue.component.scss'
 })
 export class CatalogueComponent implements OnInit, OnDestroy {
-  produits: Produit[] = [];
+  produits$!: Observable<Produit[]>;
 
   private imageIndexByProductId = new Map<number, number>();
   private intervalByProductId = new Map<number, number>();
@@ -26,14 +27,14 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.catalogueService.getProduits$().subscribe(produits => {
-      this.produits = produits;
-
-      // démarre autoplay pour chaque produit qui a > 1 image
-      for (const p of this.produits) {
-        if ((p.imageUrls?.length ?? 0) > 1) this.startAutoplay(p);
-      }
-    });
+    this.produits$ = this.catalogueService.getProduits$().pipe(
+      tap((produits) => {
+        // démarre autoplay pour chaque produit qui a > 1 image
+        for (const p of produits) {
+          if ((p.imageUrls?.length ?? 0) > 1) this.startAutoplay(p);
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -43,7 +44,6 @@ export class CatalogueComponent implements OnInit, OnDestroy {
 
   trackById = (_: number, p: Produit) => p.id;
 
-  // --- Autoplay + hover ---
   onHoverStart(id: number) { this.hovered.add(id); }
   onHoverEnd(id: number) { this.hovered.delete(id); }
 
@@ -58,7 +58,6 @@ export class CatalogueComponent implements OnInit, OnDestroy {
     this.intervalByProductId.set(p.id, handle);
   }
 
-  // --- Carrousel actions ---
   getIndex(id: number): number {
     return this.imageIndexByProductId.get(id) ?? 0;
   }
@@ -91,11 +90,8 @@ export class CatalogueComponent implements OnInit, OnDestroy {
     return urls[Math.min(idx, urls.length - 1)];
   }
 
-  // --- panier ---
-    AjouterAuPanier(produit: Produit): void {
-    // Log DEV uniquement (ne sortira pas en prod)
+  AjouterAuPanier(produit: Produit): void {
     this.logger.debug('[Panier] Ajout produit', { id: produit.id, nom: produit.nom });
-
     this.panier.add(produit, 1);
 
     this.snackBar.open(`“${produit.nom}” a été ajouté au panier !`, 'OK', {

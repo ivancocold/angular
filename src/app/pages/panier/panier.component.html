@@ -1,23 +1,22 @@
 <section class="panier">
   <header class="panier__header">
     <h1>Votre panier</h1>
+
     <div class="panier__meta">
       <span>{{ count() }} article{{ count() > 1 ? 's' : '' }}</span>
       <span class="panier__total">Total : {{ total() | currency:'EUR' }}</span>
-      <button class="btn btn--danger" (click)="clear()" [disabled]="count() === 0">Vider le panier</button>
 
-      <button
-        class="btn btn--primary"
-        (click)="pay()"
-        [disabled]="count() === 0"
-      >
+      <button class="btn btn--danger" (click)="clear()" [disabled]="count() === 0">
+        Vider le panier
+      </button>
+
+      <button class="btn btn--primary" (click)="pay()" [disabled]="count() === 0">
         Passer au paiement
       </button>
-    
     </div>
   </header>
-  
-  <ng-container *ngIf="(items$ | async) as items">
+
+  <ng-container *ngIf="items$ | async as items">
     <div *ngIf="items.length; else empty">
       <ul class="panier__list">
         <li *ngFor="let it of items; trackBy: trackById" class="panier__item">
@@ -25,7 +24,7 @@
           <!-- CARROUSEL -->
           <div
             class="carousel"
-            *ngIf="getUrls(it).length as n"
+            *ngIf="getUrls(it) as urls"
             (mouseenter)="onHoverStart(it.produit.id)"
             (mouseleave)="onHoverEnd(it.produit.id)"
           >
@@ -38,35 +37,34 @@
             />
 
             <button
-              *ngIf="n > 1"
+              *ngIf="urls.length > 1"
               class="carousel__btn carousel__btn--prev"
               type="button"
-              (click)="prevImage(it)"
+              (click)="prevImage(it); $event.stopPropagation()"
               aria-label="Image précédente"
             >
-            ‹
-              </button>
-
-              <button
-                *ngIf="n > 1"
-                class="carousel__btn carousel__btn--next"
-                type="button"
-                (click)="nextImage(it)"
-                aria-label="Image suivante"
-              >
-            ›
+              ‹
             </button>
 
-            <div class="carousel__dots" *ngIf="n > 1">
+            <button
+              *ngIf="urls.length > 1"
+              class="carousel__btn carousel__btn--next"
+              type="button"
+              (click)="nextImage(it); $event.stopPropagation()"
+              aria-label="Image suivante"
+            >
+              ›
+            </button>
+
+            <div class="carousel__dots" *ngIf="urls.length > 1">
               <button
-                *ngFor="let _ of getUrls(it); let i = index"
+                *ngFor="let _ of urls; let i = index"
                 type="button"
                 class="carousel__dot"
                 [class.is-active]="getIndex(it) === i"
-                (click)="setImage(it, i)"
+                (click)="setImage(it, i); $event.stopPropagation()"
                 [attr.aria-label]="'Aller à l’image ' + (i + 1)"
-              >
-              </button>
+              ></button>
             </div>
           </div>
 
@@ -81,9 +79,10 @@
             </div>
           </div>
 
-          <button class="remove-btn" (click)="remove(it.produit.id)" aria-label="Supprimer">✕</button>
+          <button class="remove-btn" (click)="remove(it.produit.id)" aria-label="Supprimer">
+            ✕
+          </button>
         </li>
-        
       </ul>
     </div>
 
