@@ -113,6 +113,8 @@ export class CatalogueService {
   nom: 'Gants chauffant thermiques Warmstyle',
   description: 'Restez au chaud et actif cet hiver avec des gants chauffants Warmstyle® pratiques, sûrs et performants. Chauffage ultra-rapide. Couverture chauffante complète. Réglage de la température à 3 niveaux. Fonction tactile pratique. Batterie longue durée',
   prix: 94.41,
+  categorie: ['Accessoire'],
+  sous_categorie: ['Gant'],
   quantite_en_stock : 100,
   imageUrls: 
   [
@@ -131,6 +133,8 @@ export class CatalogueService {
       nom: 'Chaussures Specialized S-Works Torch',
       description: 'La torche Specialized S-Works représente la dernière évolution dans le domaine des chaussures les plus performantes du cyclisme. En utilisant la géométrie corporelle, le biomimétisme, la science des données et le savoir-faire, Specialized a conçu une chaussure construite avec tant de soin que vous oublierez que vous la portez. Tirant parti de la science des données, Specialized a perfectionné chaque détail de la partie supérieure de la torche S-Works pour un meilleur ajustement et des performances inégalées. Le câble BOA® est décalé vers le bas et incliné, empêchant le soulèvement de l\'avant-pied. Cette évolution élimine le besoin d\'une sangle velcro, tout en offrant une structure qui améliore la puissance et élimine les pressions ou pincements indésirables. Les matériaux adaptatifs permettent un mouvement naturel du pied là où cela est nécessaire pour plus de confort, tandis que le renforcement zonal basé sur les données maintient le pied bandé pour une puissance de sortie nette et une efficacité optimale. Guidé par plus de 100 000 scans de pieds de données RETÜL, Specialized a reconnu qu\'une semelle standard et une semelle large conviendraient mieux à l\'éventail complet des formes de pieds humains. Un renfort interne ajoute de la rigidité et de la résistance. Le résultat est une réduction de poids de 20 grammes, une plus grande efficacité et un transfert de puissance immédiat. Également sur la base des données RETÜL, il a été estimé qu\'il fallait plus d\'espace pour accueillir le tendon d\'Achille afin d\'augmenter le confort. Le problème a été résolu en créant un siège de talon asymétrique qui offrait plus d\'espace, tout en conservant une excellente connexion. Par conséquent, il a été vérifié pour maintenir un alignement optimal du genou et un confort accru. La torche S-Works a été scientifiquement conçue pour disparaître à vos pieds.',
       prix: 389.00,
+      categorie: ['Vêtement'],
+      sous_categorie: ['Chaussure'],
       quantite_en_stock : 100,
       imageUrls: 
       [
@@ -148,6 +152,8 @@ export class CatalogueService {
       description: 'Les pédales automatiques Assioma peuvent être facilement montées, démontées et transférées d’un vélo à l’autre en quelques minutes : sans outils spéciaux et sans l’aide d’un mécanicien. Tout simplement comme des pédales communes.',
       prix: 350.00,
       quantite_en_stock : 100,
+      categorie : ['Accessoire'],
+      sous_categorie : ['Pédale'],
       imageUrls: 
       [
         'https://media.bike-street.com/10664-large_default/pedales-capteur-de-puissance-favero-assioma-duo.jpg',
@@ -282,6 +288,8 @@ export class CatalogueService {
       Un antivol de haute sécurité de bonne longueur permettant d'attacher 2 vélos, un vélo électrique ou son vélo autour de points fixes à grand diamètre (ex: arbres, poteaux, grilles…).`,
       prix: 59.99,
       quantite_en_stock : 100,
+      categorie: ['Accessoire'],
+      sous_categorie: ['Antivol'],
       imageUrls: 
       [
         'https://contents.mediadecathlon.com/p2314918/k$9fb0a72702a47f3ff9a026ff07a80136/sq/antivol-velo-chaine-certifie-art3-920-l.jpg?format=auto&f=1200x1200',
@@ -344,6 +352,8 @@ export class CatalogueService {
       description: 'Capteur de vitesse de vélo SC-E6100. Système E-TUBE. Mode d\'assistance.\n 5 modes d\'assistance : HIGH, NORM, ECO, OFF, WALK.\n Communication étendue par connectivité sans fil.\n Écran large et lisible.\n Communication sans fil avec d\'autres écrans et les applications smartphones.\n Support total E-TUBE PROJECT pour les différents modes d\'utilisation du vélo.\n D-FLY (boîtier de communication sans fil)',
       prix: 184.99,
       quantite_en_stock : 100,
+      categorie: ['Accessoire'],
+      sous_categorie: ['Capteur'],
       imageUrls: 
       [
         'https://contents.mediadecathlon.com/p2626718/k$82d80a04619ade82b46e945f2cf201dc/sq/display-shimano-steps-sc-e6100.jpg?format=auto&f=1200x1200',
@@ -357,9 +367,11 @@ export class CatalogueService {
     {
       id: 18,
       nom: 'Engine Pro 2.0',
-      description: 'Vélo électrique pliant d\'aventure en plein air à couple élevé de 75 Nm',
+      description: 'Vélo électrique pliant d\'aventure en plein air à couple élevé de 75 Nm.',
       prix: 1499.00,
       quantite_en_stock : 100,
+      categorie: ['Vélo'],
+      sous_categorie: ['Vélo électrique'],
       imageUrls: 
       [
         'https://engwe.com/cdn/shop/files/Engine_Pro_2_3.jpg?crop=center&height=2089&v=1767078817&width=1500',
@@ -374,12 +386,14 @@ export class CatalogueService {
       nom: 'Maillot cycliste BIC vintage',
       description: `Maillot long vintage BIC. Une apparence clairement Vintage, pour une conception tout à fait contemporaine.\n
       La coupe est très actuelle et près du corps pour plus d'aérodynamisme.
-      ✅ il bénéficie d'un séchage rapide grâce au Lycra et au polyester
-      ✅ il est respirant, anti-rétrécissement, anti-transpiration et anti-boulochage, 
-      ✅ il possède 3 poches à l'arrière.
+      Il bénéficie d'un séchage rapide grâce au Lycra et au polyester,
+      il est respirant, anti-rétrécissement, anti-transpiration et anti-boulochage, 
+      il possède 3 poches à l'arrière.
       Pour les 3 saisons de vélo !`,
       prix: 57.50,
       quantite_en_stock : 100,
+      categorie: ['Vêtement'],
+      sous_categorie: ['Maillot'],
       imageUrls: 
       [
         'https://maillotcycliste-vintage.fr/cdn/shop/products/Bic_Pen_Retro_Long_sleeve_Cycling_Jersey_1__00721.1510063468_f1668d7c-15ba-43b6-9c0e-b62150e0ecdc_500x.jpg?v=1601881886',
@@ -395,7 +409,7 @@ export class CatalogueService {
       nom: 'Short WAG',
       categorie: ['Vêtement'],
       sous_categorie: ['Short'],
-      description: 'Short WAG noir, utilisable à vélo',
+      description: 'Short WAG noir, utilisable à vélo.',
       prix: 44.95,
       quantite_en_stock : 100,
       imageUrls: 
@@ -412,6 +426,8 @@ export class CatalogueService {
       nom: 'Porte-bidon Supacaz Manta',
       description: 'Optimisez vos sorties avec le porte-bidon Supacaz Manta, alliant légèreté, robustesse et design moderne pour chaque cycliste passionné.',
       prix: 25.00,
+      categorie: ['Accessoire'],
+      sous_categorie: ['Porte-bidon'],
       quantite_en_stock : 100,
       imageUrls: 
       [

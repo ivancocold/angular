@@ -1,9 +1,47 @@
+/* footer.component.scss */
+/*
+  Ici, je définis le style du footer de mon application.
+  Mon objectif : avoir un pied de page lisible, centré, et qui occupe toute la largeur.
+*/
+
 footer {
+  /*
+    Je définis une couleur de fond pour distinguer visuellement le footer du reste de la page.
+  */
   background-color: #489cef;
+
+  /*
+    Je mets le texte en blanc pour garantir un bon contraste avec le fond bleu.
+  */
   color: white;
+
+  /*
+    Je centre le contenu du footer (texte, liens éventuels) horizontalement.
+  */
   text-align: center;
+
+  /*
+    J’ajoute de l’espace vertical (haut/bas) pour que le footer respire et soit plus agréable.
+    - 1rem 0 : 1rem en haut et en bas, 0 sur les côtés.
+  */
   padding: 1rem 0;
+
+  /*
+    Je garde une position "normale" dans le flux du document.
+    - static : c’est la valeur par défaut, le footer se place à la suite du contenu.
+    (Donc ici, je ne le fixe pas en bas de l’écran.)
+  */
   position: static;
+
+  /*
+    bottom: 0 n’a d’effet que si la position est relative/absolute/fixed/sticky.
+    Avec position: static, cette propriété est ignorée.
+    Je le laisse éventuellement si je prévois de changer la stratégie de positionnement plus tard.
+  */
   bottom: 0;
+
+  /*
+    Je force le footer à prendre toute la largeur disponible.
+  */
   width: 100%;
 }

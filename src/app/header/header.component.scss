@@ -1,32 +1,78 @@
+/*
+  header.component.scss (fichier SCSS du header)
+
+  Ici, je définis le style du header de mon application.
+  Je structure mes règles en SCSS imbriqué pour que ce soit plus lisible :
+  header → .logo-container → img/nav → a.
+*/
+
 header {
+  /*
+    Je définis la couleur de fond du header pour le mettre en avant.
+  */
   background-color: #489cef;
+
+  /*
+    J’ajoute du padding pour aérer le contenu (logo + navigation).
+  */
   padding: 1rem;
+
+  /*
+    Je définis une couleur de texte par défaut dans le header.
+    (Attention : la couleur des liens <a> est redéfinie plus bas en blanc.)
+  */
   color: rgb(236, 137, 137);
 
   .logo-container {
+    /*
+      Je passe le conteneur en flex pour aligner logo et menu sur une même ligne.
+      - align-items: center : je centre verticalement les éléments.
+      - justify-content: space-between : je mets le logo à gauche et la nav à droite.
+    */
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     img {
+      /*
+        Je fixe la hauteur du logo et je laisse la largeur s’adapter automatiquement
+        pour conserver les proportions.
+      */
       height: 50px;
       width: auto;
     }
 
     nav {
+      /*
+        Je mets les liens de navigation en ligne avec flex.
+        gap crée un espacement régulier entre les liens.
+      */
       display: flex;
       gap: 1.5rem;
 
       a {
+        /*
+          Je stylise les liens du menu :
+          - couleur blanche pour le contraste sur le fond bleu,
+          - suppression du soulignement,
+          - texte en gras pour une meilleure lisibilité.
+        */
         color: white;
         text-decoration: none;
         font-weight: bold;
 
         &.active {
+          /*
+            Quand la route est active (routerLinkActive="active"),
+            j’ajoute un liseré en bas pour indiquer la page courante.
+          */
           border-bottom: 2px solid white;
         }
 
         &:hover {
+          /*
+            Au survol, je change la couleur pour donner un feedback visuel à l’utilisateur.
+          */
           color: #f39c12;
         }
       }

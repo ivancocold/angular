@@ -1,14 +1,48 @@
+<!-- header.component.html -->
+<!--
+  Ici, je définis l’en-tête (header) de mon application.
+  Je l’utilise pour afficher mon logo et la navigation principale vers les pages clés.
+-->
+
 <header>
+  <!--
+    Conteneur principal du header :
+    je regroupe le logo + le menu de navigation dans la même zone pour faciliter la mise en page (CSS).
+  -->
   <div class="logo-container">
-    <img ngSrc="assets/images/logo.png"
-    alt="Adventure Work Logo"
-    height="50"
-    width="100"
+
+    <!--
+      Logo de l’application :
+      - ngSrc : je profite de l’optimisation d’images Angular (directive NgOptimizedImage) pour un chargement plus performant.
+      - alt : j’ajoute un texte alternatif pour l’accessibilité (lecteurs d’écran) et le SEO.
+      - height/width : je fixe les dimensions pour éviter les “sauts” de mise en page (layout shift).
+    -->
+    <img
+      ngSrc="assets/images/logo.png"
+      alt="Adventure Work Logo"
+      height="50"
+      width="100"
     />
+
+    <!--
+      Menu de navigation :
+      je propose ici des liens vers les principales routes de mon application.
+    -->
     <nav>
+      <!--
+        Lien vers l’accueil :
+        - routerLink : je navigue sans recharger la page (navigation SPA via Angular Router).
+        - routerLinkActive="active" : j’applique automatiquement la classe CSS "active" quand la route est active.
+      -->
       <a routerLink="/accueil" routerLinkActive="active">Accueil</a>
+
+      <!-- Lien vers le catalogue des produits -->
       <a routerLink="/catalogue" routerLinkActive="active">Catalogue</a>
+
+      <!-- Lien vers le panier -->
       <a routerLink="/panier" routerLinkActive="active">Panier</a>
+
+      <!-- Lien vers le formulaire / page de contact -->
       <a routerLink="/contact" routerLinkActive="active">Contact</a>
     </nav>
   </div>

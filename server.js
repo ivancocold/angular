@@ -118,12 +118,13 @@ app.post("/contact", (req, res) => {
     messages = JSON.parse(fs.readFileSync(filePath, "utf8") || "[]");
   }
 
-  // Prépare l’objet à stocker
+  // Préparer l’objet à stocker
   // Je construis l’objet à stocker
   const record = {
-    //Je chiiffre le nom et l'email
+    //Je chiffre le nom et l'email
     name: encrypt(incoming.name),
     email: encrypt(incoming.email),
+    
     // Si jamais je souhaite le chiffrer le message :
     // message: encrypt(incoming.message),
     message: incoming.message,
@@ -146,7 +147,7 @@ app.post("/contact", (req, res) => {
 /*
   Endpoint GET /admin/messages-plaintext
   Permet de relire les messages en clair (en déchiffrant nom & email).
-  ⚠️ À NE PAS exposer en production sans auth (JWT, session, etc.).
+  ⚠️ À NE PAS exposer en production sans auth (JWT, session, etc.)
 */
 app.get("/admin/messages-plaintext", (req, res) => {
   const filePath = "./messages.json";
